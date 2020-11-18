@@ -1,0 +1,172 @@
+:root {
+	--primary-color: #000;
+	--secondary-color: #808080;
+	--dark-color: #333;
+	--light-color: #fff;
+	--success-color: #5cb85c;
+	--error-color: #d9534f;
+}
+
+.theme {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+}
+
+.show {display: block;}
+.hide {display: none;}
+
+:focus {
+  outline: none;
+  outline-offset: 0;
+}
+input {
+  width:200px;
+}
+input[type=text], input[type=date], input[type=tel], input[type=number], input[type=email] {
+  writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  cursor: auto;
+  display: inline-block;
+  text-align: start;
+  -webkit-appearance: textfield;
+  -webkit-rtl-ordering: logical;
+  margin: 0em;
+  font: 400 12px "Segoe UI";
+  padding: 1px 2px;
+  background-color: var(--light-color);
+  color: var(--dark-color);
+	border: 1px solid var(--secondary-color);
+  border-image: none;
+  height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  ;
+}
+
+.mpSelect:hover .mpSelect-content{display:block}
+
+.mpSelect-content {
+  display: none;
+  position: absolute;
+  cursor:auto;
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  min-width: 160px;
+  max-height: 400px;
+  overflow-y: auto;
+  white-space: nowrap;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  padding: 4px;
+}
+.mpSelect-content option {
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 2px;
+  border: 0;
+  width: 100%;
+}
+.mpSelect-content div {
+  position: relative;
+  -webkit-appearance: checkbox;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 100%;
+}
+.mpSelect-content input {
+  width: auto;
+  margin: 2px;
+  position: relative;
+  top: 2px;
+  cursor: pointer;
+  -webkit-appearance: checkbox;
+  box-sizing: border-box;
+}
+.mpSelect-content label {
+  cursor: pointer;
+}
+
+
+.mpDialog {
+	position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+	border: 1px solid var(--secondary-color);
+	min-width: 200px;
+	min-height: 100px;
+	max-height: 500px;
+	z-index: 9998;
+}
+
+.mpDialog header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+	min-height: 30px;
+	padding: 10px;
+  cursor: move;
+}
+.mpDialog header h1 {
+  margin: 0;
+}
+
+.mpDialog content {
+  flex: 1;
+  padding: 10px;
+  overflow: auto;
+}
+
+.mpDialog footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 30px;
+  padding: 10px;
+}
+
+.mpDialog footer button {
+  margin-left: 8px;
+  padding: 4px 8px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+
+
+.tableWrap {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  overflow: auto;
+}
+table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+thead tr th {
+  position: sticky;
+  top: 0;
+}
+th {
+  padding: 6px;
+  text-align: left;
+  /* With border-collapse, we must use box-shadow for the header borders */
+  box-shadow: 0px 0px 0 1px;
+}
+tbody tr {
+  border-bottom: 1px solid gray;
+}
+tbody tr:hover {
+  background: #e6f7ff;
+}

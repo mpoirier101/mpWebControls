@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+:root {
+	--primary-color: #000;
+	--secondary-color: #808080;
+	--dark-color: #333;
+	--light-color: #f0f0f0;
+	--success-color: #5cb85c;
+	--error-color: #d9534f;
+}
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: 'Lato', sans-serif;
+	color: #333;
+	line-height: 1.6;
+	width: 100%;
+	height: 100vh;
+	background-image: url("/images/thumbnail.jpg");
+}
+
+ul {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+h1,
+h2 {
+	font-weight: 300;
+	line-height: 1.2;
+	margin: 10px 0;
+}
+
+p {
+	margin: 10px 0;
+}
+
+img {
+	width: 100%;
+}
+
+code,
+pre {
+	background: #333;
+	color: #fff;
+	padding: 10px;
+}
+/* Navbar */
+
+.navbar {
+	background-color: var(--primary-color);
+	color: #fff;
+	width: 100%;
+	height: 50px;
+}
+
+	.navbar .container {
+		overflow: hidden;
+	}
+
+	.navbar .flex {
+		justify-content: space-between;
+	}
+
+	.navbar .tabBtn {
+		font-size: 2rem;
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	.navbar ul {
+		display: flex;
+	}
+
+	.navbar a {
+		color: #fff;
+		padding: 10px;
+		margin: 0 5px;
+	}
+
+		.navbar a:hover {
+			border-bottom: 2px #fff solid;
+		}
+
+	.navbar img {
+		width: 150px;
+	}
+
+
+/* Settings*/
+
+.settings {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 0;
+	height: 0;
+	background: #fff;
+	z-index: 99;
+	overflow: hidden;
+	box-shadow: 0 2px 5px black;
+	transition: all 0.2s ease-in;
+}
+
+	.settings .header {
+		font-size: 2rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 50px;
+		padding: 0 10px;
+	}
+
+	.settings .container {
+		padding: 0 10px;
+	}
+
+	.settings.zoom {
+		width: 340px;
+		height: 50vh;
+	}
+
+/* main content */
+
+.tabContent {
+	width: 100%;
+	height: auto;
+	margin: 0;
+}
+
+/* Report */
+.report {
+	position: relative;
+	height: 500px;
+	background-color: var(--light-color);
+	color: var(--dark-color);
+	margin: 20px 0;
+}
+
+	.report h1 {
+		font-size: 40px;
+	}
+
+	.report p {
+		margin: 20px 0;
+	}
+
+	.report .grid {
+		overflow: visible;
+		grid-template-columns: 55% auto;
+		grid-gap: 30px;
+	}
+
+.report-text {
+	animation: slideInFromLeft 1s ease-in;
+}
+
+.report-form {
+	position: relative;
+	top: 60px;
+	height: 350px;
+	width: 400px;
+	padding: 40px;
+	z-index: 100;
+	justify-self: flex-end;
+	animation: slideInFromRight 1s ease-in;
+}
+
+	.report-form .form-control {
+		margin: 30px 0;
+	}
+
+	.report-form input[type='text'],
+	.report-form input[type='email'] {
+		border: 0;
+		border-bottom: 1px solid #b4becb;
+		width: 100%;
+		padding: 3px;
+		font-size: 16px;
+	}
+
+	.report-form input:focus {
+		outline: none;
+	}
+
+
+/* Cedule */
+.cedule {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--light-color);
+	color: var(--dark-color);
+	margin: 20px auto;
+	width: 70vw;
+	height: 70vh
+}
+	.cedule .header {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 1rem -1rem;
+	}
+		.cedule .header > div {
+			flex: auto;
+			margin: 0 1rem;
+		}
+	.cedule .content {
+		flex: auto;
+		display: flex;
+		justify-items: center;
+		align-items: flex-start;
+		margin: 1rem -1rem;
+	}
+		.cedule .content > div {
+			flex: auto;
+			margin: 0 1rem;
+		}
+
+/* Footer */
+
+.footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 8px 16px;
+	min-height: 30px;
+	z-index: 10;
+}
+
+	.footer .social a {
+		margin: 0 10px;
+	}
+
+/* Animations */
+
+@keyframes slideInFromLeft {
+	0% {
+		transform: translateX(-100%);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideInFromRight {
+	0% {
+		transform: translateX(100%);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideInFromTop {
+	0% {
+		transform: translateY(-100%);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideInFromBottom {
+	0% {
+		transform: translateY(100%);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+/* Tablets and under */
+@media (max-width: 768px) {
+	.grid,
+	.report .grid,
+	.stats .grid,
+	.cli .grid,
+	.cloud .grid,
+	.features-main .grid,
+	.docs-main .grid {
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+	}
+
+	.report {
+		height: auto;
+	}
+
+	.report-text {
+		text-align: center;
+		margin-top: 40px;
+		animation: slideInFromTop 1s ease-in;
+	}
+
+	.report-form {
+		justify-self: center;
+		margin: auto;
+		animation: slideInFromBottom 1s ease-in;
+	}
+
+	.cli .grid > *:first-child {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.features-head,
+	.features-sub-head,
+	.docs-head {
+		text-align: center;
+	}
+
+		.features-head img,
+		.features-sub-head img,
+		.docs-head img {
+			justify-self: center;
+		}
+
+	.features-main .grid > *:first-child,
+	.features-main .grid > *:nth-child(2) {
+		grid-column: 1;
+	}
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+	.navbar {
+		height: 110px;
+	}
+
+		.navbar .flex {
+			flex-direction: column;
+		}
+
+		.navbar ul {
+			padding: 10px;
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+
+	.report-form {
+		width: 300px;
+	}
+}

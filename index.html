@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Components</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/mp.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/mp-components.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/mpCalendar.css" />
+
+    <script src="mpCalendar.js"></script>
+    <script src="mpTextBox.js"></script>
+    <script src="mpSelect.js"></script>
+    <script src="mpSelectMany.js"></script>
+    <script src="mpDateRange.js"></script>
+    <script src="mpDialog.js"></script>
+    <script src="mpTable.js"></script>
+  </head>
+  <body>
+    <h3>Test Components</h3>
+
+    <div id="mpCal" ></div>
+
+    <div id="header" class="mp-nowrap-container mp-header">
+      <div id="fullname" class="mp-header-item"></div>
+      <div id="sort" class="mp-header-item"></div>
+      <div id="district" class="mp-header-item"></div>
+      <div id="date" class="mp-header-item"></div>
+      <div id="period" class="mp-header-item"></div>
+      
+      <button id="btnDialog" class="mp-header-item">Show Dialog</button>
+    </div>
+
+    
+    
+    <mp-table id="members" style="display:none;"></mp-table>
+
+    <div id="dialog"></div>
+
+
+    <!-- <table>
+      <thead>
+        <tr><th class="blue">header</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>main content: fills remaining space<br>
+            x<br>x<br>x<br>x<br>x<br>x<br>x<br>x<br>x<br>x<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+ -->
+    <script>
+      var orders = [
+        ["asc", "Ascending"],
+        ["desc", "Descending"],
+      ];
+
+      var districts = [
+        ["1", "District 1"],
+        ["2", "District 2"],
+        ["3", "District 3"],
+        ["4", "District 4"],
+        ["5", "District 5"],
+        ["6", "District 6"],
+        ["7", "District 7"],
+      ];
+
+      var savings = [
+        ["January", "100"],
+        ["February", "130"],
+        ["March", "200"],
+        ["April", "180"],
+        ["May", "110"],
+        ["June", "90"],
+      ]
+
+      var members = [
+      {
+        "id": 1,
+        "first_name": "Jeanette",
+        "last_name": "Penddreth",
+        "email": "jpenddreth0@census.gov",
+        "gender": "Female",
+        "ip_address": "26.58.193.2"
+      }, {
+        "id": 2,
+        "first_name": "Giavani",
+        "last_name": "Frediani",
+        "email": "gfrediani1@senate.gov",
+        "gender": "Male",
+        "ip_address": "229.179.4.212"
+      }, {
+        "id": 3,
+        "first_name": "Noell",
+        "last_name": "Bea",
+        "email": "nbea2@imageshack.us",
+        "gender": "Female",
+        "ip_address": "180.66.162.255"
+      }, {
+        "id": 4,
+        "first_name": "Willard",
+        "last_name": "Valek",
+        "email": "wvalek3@vk.com",
+        "gender": "Male",
+        "ip_address": "67.76.188.26"
+      }];
+
+      var json = '[{"id": 1,"first_name": "Jeanette","last_name": "Penddreth","email": "jpenddreth0@census.gov","gender": "Female","ip_address": "26.58.193.2"},' + 
+      '{"id": 2,"first_name": "Giavani","last_name": "Frediani","email": "gfrediani1@senate.gov","gender": "Male","ip_address": "229.179.4.212"},' +
+      '{"id": 3,"first_name": "Noell","last_name": "Bea","email": "nbea2@imageshack.us","gender": "Female","ip_address": "180.66.162.255"},' +
+      '{"id": 4,"first_name": "Willard","last_name": "Valek","email": "wvalek3@vk.com","gender": "Male","ip_address": "67.76.188.26"}]';
+
+      var columns = [
+        {"data": "first_name", "display":"First Name", "sort":""},
+        {"data": "last_name", "display":"Last Name", "sort":""},
+        {"data": "email", "display":"Email", "sort":""},
+        {"data": "gender", "display":"Gender", "sort":""},
+      ];
+
+      var selectedName = "Michel Poirier";
+      var selectedOrder = "asc";
+      var selectedDistrict = ["2","4"];
+      var selectedDate = "2020-06-11";
+      var selectedDates = ["2020-03-01", "2020-03-31"];
+    </script>
+
+<script>
+
+      (function () {
+
+        // ---------------------------------
+        // mpCalendar
+        // ---------------------------------
+        var mpCal = new mpCalendar("mpCal", {
+          disablePastDays: true
+        });
+
+        // ---------------------------------
+        // mp-text
+        // ---------------------------------
+        var fullname = new mpText("fullname", {
+          value: selectedName,
+          caption: "Display name:",
+          placeholder: "Enter full name",
+          pattern: "",
+          required: true,
+        }); 
+        fullname.on("input", function(e){
+          console.log(e.detail);
+        });
+
+        // ---------------------------------
+        // mp-select
+        // ---------------------------------
+        var sort = new mpSelect("sort", {
+          caption: "Sort Order:",
+          list: orders, 
+          value: selectedOrder,
+        });
+        sort.on("changed", function(e){
+          console.log(e.detail);
+        });
+
+        // ---------------------------------
+        // mp-selectmany
+        // ---------------------------------
+        var district = new mpSelectMany("district", {
+          caption: "District(s):",
+          list: districts, 
+          value: selectedDistrict,
+        });
+        district.on("changed", function(e){
+          console.log(e.detail);
+        });
+
+        // ---------------------------------
+        // mp-date
+        // ---------------------------------
+        var date = new mpText("date", {
+          type: "date",
+          //value: selectedDate,
+          caption: "Select Date:",
+          pattern: "\d{4}-\d{2}-\d{2}",
+          required: true,
+        });
+        fullname.on("input", function(e){
+          console.log(e.detail);
+        });
+
+        // ---------------------------------
+        // mp-daterange
+        // ---------------------------------
+        var period = new mpDateRange("period", {
+          value: selectedDates,
+          captions: ["Debut:","Fin:"],
+          pattern: "\d{4}-\d{2}-\d{2}",
+          required: true,
+        });
+        period.on("input", function(e){
+          console.log(e.detail);
+        });
+
+        // ---------------------------------
+        // mp-dialog
+        // ---------------------------------
+        var dialog = new mpDialog("dialog", {
+          buttons: [mpDialog.Buttons.Cancel, mpDialog.Buttons.OK],
+          title: "Dialog Title",
+          width: "400px",
+          height: "400px",
+        });
+        dialog.on("closed", function (event) {
+          console.log("Closed event fired: " + event.detail);
+        });
+
+        var btn = document.getElementById("btnDialog");
+        btn.addEventListener("click", function (event) {
+          dialog.open();
+        });
+      
+        // ---------------------------------
+        // mp-table
+        // ---------------------------------
+        var table = document.getElementById("members");
+        table.init({
+          caption: "mpTable example",
+          width: "600px",
+          height: "400px",
+          columns: columns,
+          //data: members, // initialize with array
+          //json: json, // initialize with JSON
+        });
+        table.addEventListener("rowClick", function (event) {
+          console.log("Row Click event fired: " + event.detail.value);
+        });
+
+        // ---------------------------------
+        // load sample json data from file
+        // ---------------------------------
+        function loadSampleData() {
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              table.fillTable(this.responseText, columns);
+            }
+          };
+          xhttp.open("GET", "MOCK_DATA.json", true);
+          xhttp.send();
+        }
+
+        loadSampleData();
+      
+      })();
+    </script>
+  </body>
+</html>
