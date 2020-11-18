@@ -15,6 +15,8 @@ class mpDialog {
     var height = options.height || this._element.getAttribute("height") || "200px";
     var buttons = options.buttons || [];
 
+    var currentContent = this._element.children ? this._element.children : null;
+
     // events
     this.closeHandler = this.onclose.bind(this);
     this.on = function (event, func) {
@@ -31,7 +33,7 @@ class mpDialog {
     if (height) { this._element.style.height = height; }
 
     // dialog header
-    var header = this._element.appendChild(document.createElement("header"));
+    var header = this._element.insertAdjacentElement("afterbegin", document.createElement("header"));
     header.classList.add("theme");
     
     if (caption) {
@@ -49,12 +51,24 @@ class mpDialog {
     });
 
     // dialog content
-    var content = this._element.appendChild(document.createElement("content"));
+    //var content = this._element.appendChild(document.createElement("content"));
+    
+    // element that will be wrapped
+    var el = this._element.querySelector('div');
+
+    // create wrapper container
+    var wrapper = document.createElement('content');
+
+    // insert wrapper before el in the DOM tree
+    this._element.insertBefore(wrapper, el);
+
+    // move el into wrapper
+    wrapper.appendChild(el);
 
     // dialog footer
     if (buttons && buttons.length > 0) {
 
-      var footer = this._element.appendChild(document.createElement("footer"));
+      var footer = this._element.insertAdjacentElement("beforeend", document.createElement("footer"));
       footer.classList.add("theme");
 
       buttons.forEach(function (button, i) {
