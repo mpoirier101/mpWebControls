@@ -2,8 +2,9 @@
   constructor(selector, options) {
 
     this._element = document.getElementById(selector);
-    this.options = options;
+    this._element.classList.add("mpControl");
 
+    this.options = options;
     var caption = options.caption || this._element.getAttribute("caption") || "";
     var placeholder = options.placeholder || this._element.getAttribute("placeholder") || "Enter text";
     var pattern = options.pattern || this._element.getAttribute("pattern") || "";
@@ -28,8 +29,8 @@
     this.ctrl.name = selector;
     
     if (caption) {
-      var lbl = this._element.appendChild(document.createElement("label"));
-      lbl.htmlFor = this.ctrl.id;
+      var lbl = this._element.appendChild(document.createElement("span"));
+      //lbl.htmlFor = this.ctrl.id;
       lbl.innerText = caption;
     }
     if (placeholder) {

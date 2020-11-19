@@ -1,4 +1,8 @@
-﻿class mpCalendar {
+﻿/*
+  Based on code by Chris Collins
+  https://github.com/scottishstoater/vanilla-calendar
+*/
+class mpCalendar {
 
   constructor(selector, options) {
 

@@ -2,7 +2,7 @@ class mpSelect {
   constructor(selector, options) {
 
     this._element = document.getElementById(selector);
-    this._element.classList.add("mpSelect");
+    this._element.classList.add("mpControl");
 
     this.options = options;
     var caption = options.caption || this._element.getAttribute("caption") || "";
@@ -29,10 +29,9 @@ class mpSelect {
     this.ctrl.readOnly = true;
 
     if (caption) {
-      var lbl = this._element.appendChild(document.createElement("label"));
-      lbl.htmlFor = this.ctrl.id;
+      var lbl = this._element.appendChild(document.createElement("span"));
+      //lbl.htmlFor = this.ctrl.id;
       lbl.innerText = caption;
-      this.ctrl.placeholder = placeholder;
     }
     if (placeholder) {
       this.ctrl.placeholder = placeholder;

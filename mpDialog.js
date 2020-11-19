@@ -3,13 +3,15 @@ class mpDialog {
 
     const me = this;
     this._element = document.getElementById(selector);
-    this.options = options;
+    this._element.classList.add("mpDialog");
+    this._element.style.display = "none";
 
     var pos1 = 0;
     var pos2 = 0;
     var pos3 = 0;
     var pos4 = 0;
   
+    this.options = options;
     var caption = options.caption || this._element.getAttribute("caption") || "Dialog";
     var width = options.width || this._element.getAttribute("width") || "200px";
     var height = options.height || this._element.getAttribute("height") || "200px";
@@ -27,8 +29,6 @@ class mpDialog {
     };
     
     // dialog ctrl
-    this._element.classList.add("mpDialog");
-    this._element.style.display = "none";
     if (width) { this._element.style.width = width; }
     if (height) { this._element.style.height = height; }
 

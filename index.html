@@ -18,18 +18,16 @@
   <body>
     <h3>Test Components</h3>
 
-    <div id="header" class="mp-nowrap-container mp-header">
-      <div id="fullname" class="mp-header-item"></div>
-      <div id="sort" class="mp-header-item"></div>
-      <div id="district" class="mp-header-item"></div>
-      <div id="date" class="mp-header-item"></div>
-      <div id="period" class="mp-header-item"></div>
+    <form class="form-inline">
+      <div id="fullname"></div>
+      <div id="sort"></div>
+      <div id="district"></div>
+      <div id="date"></div>
+      <div id="period"></div>
+    </form>
       
-      <button id="btnDialog" class="mp-header-item">Show Dialog</button>
-    </div>
+    <button id="btnDialog">Show Dialog</button>
 
-    
-    
     <mp-table id="members" style="display:none;"></mp-table>
 
     <div id="dialog">
@@ -185,7 +183,7 @@
           pattern: "\d{4}-\d{2}-\d{2}",
           required: true,
         });
-        fullname.on("input", function(e){
+        date.on("input", function(e){
           console.log(e.detail);
         });
 

@@ -7,6 +7,12 @@
 	--error-color: #d9534f;
 }
 
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
 .theme {
   background-color: var(--primary-color);
   color: var(--light-color);
@@ -19,10 +25,74 @@
   outline: none;
   outline-offset: 0;
 }
-input {
+
+.form-inline {  
+  display: flex;
+	flex-direction: row;
+  flex-flow: row wrap;
+	/* flex-wrap: nowrap; */
+  align-items: center;
+}
+
+/* 
+.form-inline label {
+  margin: 5px 10px;
+}
+
+.form-inline input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
   width:200px;
 }
-input[type=text], input[type=date], input[type=tel], input[type=number], input[type=email] {
+
+.form-inline button {
+  padding: 10px 20px;
+  background-color: dodgerblue;
+  border: 1px solid #ddd;
+  color: white;
+  cursor: pointer;
+  width: auto;
+}
+
+.form-inline button:hover {
+  background-color: royalblue;
+}
+
+@media (max-width: 800px) {
+  .form-inline input {
+    margin: 5px 10px;
+    width: 100%;
+  }
+  
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+} */
+
+.mpControl {
+  margin: 10px 0;
+  /* display: flex;
+  flex-flow: row wrap;
+  align-items: center; */
+}
+.mpControl span {
+  display: inline-block;
+  margin: 0 10px;
+  min-width: 80px;
+  /* display: flex;
+  flex-flow: row wrap;
+  align-items: center; */
+}
+
+.mpControl input {
+  width:200px;
+}
+
+.mpControl input[type=text], input[type=date], input[type=tel], input[type=number], input[type=email] {
   writing-mode: horizontal-tb !important;
   text-rendering: auto;
   letter-spacing: normal;
@@ -35,7 +105,7 @@ input[type=text], input[type=date], input[type=tel], input[type=number], input[t
   text-align: start;
   -webkit-appearance: textfield;
   -webkit-rtl-ordering: logical;
-  margin: 0em;
+  margin: 0;
   font: 400 12px "Segoe UI";
   padding: 1px 2px;
   background-color: var(--light-color);
@@ -45,10 +115,11 @@ input[type=text], input[type=date], input[type=tel], input[type=number], input[t
   height: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
-  ;
 }
 
-.mpSelect:hover .mpSelect-content{display:block}
+.mpControl:hover .mpSelect-content{
+  display:block
+}
 
 .mpSelect-content {
   display: none;
@@ -56,16 +127,17 @@ input[type=text], input[type=date], input[type=tel], input[type=number], input[t
   cursor:auto;
   background-color: var(--light-color);
   color: var(--dark-color);
+	border: 1px solid var(--secondary-color);
   min-width: 160px;
   max-height: 400px;
   overflow-y: auto;
   white-space: nowrap;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  margin: 0 10px 0 100px;
   padding: 4px;
 }
 .mpSelect-content option {
-  position: relative;
   cursor: pointer;
   box-sizing: border-box;
   margin: 0;
@@ -74,7 +146,6 @@ input[type=text], input[type=date], input[type=tel], input[type=number], input[t
   width: 100%;
 }
 .mpSelect-content div {
-  position: relative;
   -webkit-appearance: checkbox;
   box-sizing: border-box;
   margin: 0;

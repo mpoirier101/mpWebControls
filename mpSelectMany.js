@@ -2,7 +2,7 @@ class mpSelectMany {
   constructor(selector, options) {
 
     this._element = document.getElementById(selector);
-    this._element.classList.add("mpSelect");
+    this._element.classList.add("mpControl");
 
     this.options = options;
     var caption = options.caption || this._element.getAttribute("caption") || "";
@@ -13,7 +13,7 @@ class mpSelectMany {
     var descriptions = [];
 
     // events
-    this.clickHandler = this.onclick.bind(this);
+    this.inputHandler = this.oninput.bind(this);
     this.on = function (event, func) {
       this._element.addEventListener(event, func);
     };
@@ -29,10 +29,9 @@ class mpSelectMany {
     this.ctrl.readOnly = true;
 
     if (caption) {
-      var lbl = this._element.appendChild(document.createElement("label"));
-      lbl.htmlFor = this.ctrl.id;
+      var lbl = this._element.appendChild(document.createElement("span"));
+      //lbl.htmlFor = this.ctrl.id;
       lbl.innerText = caption;
-      this.ctrl.placeholder = placeholder;
     }
     if (placeholder) {
       this.ctrl.placeholder = placeholder;
@@ -77,23 +76,21 @@ class mpSelectMany {
     this.ctrl.title = desc;
     this._element.appendChild(this.content);
     
-    this.content.addEventListener('click', this.clickHandler, true);
+    this.content.addEventListener('input', this.inputHandler, true);
   }
 }
-mpSelectMany.prototype.onclick = function (event) {
+mpSelectMany.prototype.oninput = function (event) {
   event.stopImmediatePropagation();
-  if (event.target.tagName == "INPUT") {
-    var descriptions = [];
-    var values = [];
-    var selected = this.content.querySelectorAll("input:checked");
-    selected.forEach((checkbox) => {
-      descriptions.push(checkbox.nextElementSibling.textContent);
-      values.push(checkbox.value);
-    });
-    var desc = descriptions.join(", ");
-    var val = values.join(",");
-    this.ctrl.value = desc;
-    this.ctrl.title = desc;
-    this.fireEvent("changed", val);
-  }
+  var descriptions = [];
+  var values = [];
+  var selected = this.content.querySelectorAll("input:checked");
+  selected.forEach((checkbox) => {
+    descriptions.push(checkbox.nextElementSibling.textContent);
+    values.push(checkbox.value);
+  });
+  var desc = descriptions.join(", ");
+  var val = values.join(",");
+  this.ctrl.value = desc;
+  this.ctrl.title = desc;
+  this.fireEvent("changed", val);
 };

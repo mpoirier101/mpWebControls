@@ -1,10 +1,10 @@
 ﻿class mpDateRange {
-
   constructor(selector, options) {
 
     this._element = document.getElementById(selector);
-    this.options = options;
+    this._element.classList.add("mpControl");
 
+    this.options = options;
     var placeholders = options.placeholders || (this._element.getAttribute("placeholders") || "").split(',');
     var captions = options.captions || (this._element.getAttribute("captions") || "First,Last").split(',');
     var pattern = options.pattern || this._element.getAttribute("pattern") || "\d{4}-\d{2}-\d{2}";
@@ -26,8 +26,8 @@
     this.start.id = selector + "start";
     this.start.name = selector + "start";
     if (captions[0]) {
-      var lbl = this._element.appendChild(document.createElement("label"));
-      lbl.htmlFor = this.start.id;
+      var lbl = this._element.appendChild(document.createElement("span"));
+      //lbl.htmlFor = this.start.id;
       lbl.innerText = captions[0];
     }
     if (placeholders[0]) { this.start.placeholder = placeholders[0]; }
@@ -41,8 +41,8 @@
     this.end.id = selector + "end";
     this.end.name = selector + "end";
     if (captions[1]) {
-      var lbl = this._element.appendChild(document.createElement("label"));
-      lbl.htmlFor = this.end.id;
+      var lbl = this._element.appendChild(document.createElement("span"));
+      //lbl.htmlFor = this.end.id;
       lbl.innerText = captions[1];
     }
     if (placeholders[1]) { this.end.placeholder = placeholders[1]; }
