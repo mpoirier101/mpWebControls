@@ -75,17 +75,11 @@
 
 .mpControl {
   margin: 10px 0;
-  /* display: flex;
-  flex-flow: row wrap;
-  align-items: center; */
 }
 .mpControl span {
   display: inline-block;
   margin: 0 10px;
   min-width: 80px;
-  /* display: flex;
-  flex-flow: row wrap;
-  align-items: center; */
 }
 
 .mpControl input {

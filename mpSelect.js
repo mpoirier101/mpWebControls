@@ -10,7 +10,6 @@ class mpSelect {
     var value = options.value || this._element.getAttribute("value") || "";
     var required = options.required || this._element.getAttribute("required") || "";
     var list = options.list || (this._element.getAttribute("list") || "").split(',');
-    var description = "";
     
     // events
     this.clickHandler = this.onclick.bind(this);
@@ -30,7 +29,6 @@ class mpSelect {
 
     if (caption) {
       var lbl = this._element.appendChild(document.createElement("span"));
-      //lbl.htmlFor = this.ctrl.id;
       lbl.innerText = caption;
     }
     if (placeholder) {
@@ -48,6 +46,7 @@ class mpSelect {
     if (list && list.length > 0) {
       var content = this.content;
       var ctrl = this.ctrl;
+      var description = "";
       content.innerHTML = "";
       list.forEach(function (item, i) {
         var option = document.createElement("option");
@@ -63,7 +62,6 @@ class mpSelect {
       this.ctrl.title = description;
     }
     this._element.appendChild(this.content);
-    
     this.content.addEventListener('click', this.clickHandler, true);
   }
 }

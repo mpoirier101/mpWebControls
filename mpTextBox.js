@@ -30,7 +30,6 @@
     
     if (caption) {
       var lbl = this._element.appendChild(document.createElement("span"));
-      //lbl.htmlFor = this.ctrl.id;
       lbl.innerText = caption;
     }
     if (placeholder) {

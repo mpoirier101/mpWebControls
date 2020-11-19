@@ -10,7 +10,6 @@ class mpSelectMany {
     var value = options.value || this._element.getAttribute("value") || "";
     var required = options.required || this._element.getAttribute("required") || "";
     var list = options.list || (this._element.getAttribute("list") || "").split(',');
-    var descriptions = [];
 
     // events
     this.inputHandler = this.oninput.bind(this);
@@ -30,7 +29,6 @@ class mpSelectMany {
 
     if (caption) {
       var lbl = this._element.appendChild(document.createElement("span"));
-      //lbl.htmlFor = this.ctrl.id;
       lbl.innerText = caption;
     }
     if (placeholder) {
@@ -41,12 +39,14 @@ class mpSelectMany {
     }
     this._element.appendChild(this.ctrl);
 
+    // input content
     this.content = document.createElement("div");
     this.content.classList.add("mpSelect-content");
 
     if (list && list.length > 0) {
       var content = this.content;
       var ctrl = this.ctrl;
+      var descriptions = [];
       content.innerHTML = "";
       list.forEach(function (item, i) {
         var checkbox = document.createElement("input");
@@ -54,28 +54,24 @@ class mpSelectMany {
         checkbox.id = ctrl.id + item[0];
         checkbox.name = selector;
         checkbox.value = item[0];
-
         if (value && value.indexOf(item[0]) > -1) {
           checkbox.checked = true;
           descriptions.push(item[1]);
         }
-
         var label = document.createElement("label");
         label.htmlFor = ctrl.id + item[0];
         label.innerText = item[1];
-        
         var div = document.createElement("div");
         div.append(checkbox);
         div.append(label);
         content.append(div);
       });
-    }
 
-    var desc = descriptions.join(", ");
-    this.ctrl.value = desc;
-    this.ctrl.title = desc;
+      var desc = descriptions.join(", ");
+      this.ctrl.value = desc;
+      this.ctrl.title = desc;
+    }
     this._element.appendChild(this.content);
-    
     this.content.addEventListener('input', this.inputHandler, true);
   }
 }
