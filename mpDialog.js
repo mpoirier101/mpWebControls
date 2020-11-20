@@ -17,8 +17,6 @@ class mpDialog {
     var height = options.height || this._element.getAttribute("height") || "200px";
     var buttons = options.buttons || [];
 
-    var currentContent = this._element.children ? this._element.children : null;
-
     // events
     this.closeHandler = this.onclose.bind(this);
     this.on = function (event, func) {
@@ -51,19 +49,15 @@ class mpDialog {
     });
 
     // dialog content
-    //var content = this._element.appendChild(document.createElement("content"));
-    
-    // element that will be wrapped
-    var el = this._element.querySelector('div');
-
-    // create wrapper container
-    var wrapper = document.createElement('content');
-
-    // insert wrapper before el in the DOM tree
-    this._element.insertBefore(wrapper, el);
-
-    // move el into wrapper
-    wrapper.appendChild(el);
+    var content = document.createElement("content");
+    var currentContent = this._element.querySelector('div');
+    if (currentContent) {
+      // insert content element before currentContent in the DOM tree
+      this._element.insertBefore(content, currentContent);
+      // move currentContent into content
+      content.appendChild(el);
+    }
+    this._element.appendChild(content);
 
     // dialog footer
     if (buttons && buttons.length > 0) {

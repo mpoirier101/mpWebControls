@@ -22,16 +22,21 @@
       this._element.dispatchEvent(new CustomEvent(event, { detail: obj }));
     };
 
+    // caption
+    if (caption) {
+      var lbl = this._element.appendChild(document.createElement("div"));
+      lbl.classList.add("mpControl-label");
+      lbl.innerText = caption;
+    }
+
+    var wrapper = this._element.appendChild(document.createElement("div"));
+    wrapper.classList.add("mpControl-wrapper");
+    
     // input ctrl
-    this.ctrl = document.createElement("input");
+    this.ctrl = wrapper.appendChild(document.createElement("input"));
     this.ctrl.type = type;
     this.ctrl.id = selector + "input";
     this.ctrl.name = selector;
-    
-    if (caption) {
-      var lbl = this._element.appendChild(document.createElement("span"));
-      lbl.innerText = caption;
-    }
     if (placeholder) {
       this.ctrl.placeholder = placeholder;
     }
@@ -47,8 +52,8 @@
     if (value) {
       this.ctrl.value = value;
     }
-    this._element.appendChild(this.ctrl);
     this.ctrl.addEventListener('input', this.inputHandler, true);
+
   }
 }
 mpText.prototype.oninput = function (event) {

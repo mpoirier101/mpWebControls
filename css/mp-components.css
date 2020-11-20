@@ -30,75 +30,33 @@
   display: flex;
 	flex-direction: row;
   flex-flow: row wrap;
-	/* flex-wrap: nowrap; */
   align-items: center;
 }
 
-/* 
-.form-inline label {
-  margin: 5px 10px;
+.mpControl {
+  padding: 5px;
 }
 
-.form-inline input {
-  vertical-align: middle;
-  margin: 5px 10px 5px 0;
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  width:200px;
-}
-
-.form-inline button {
-  padding: 10px 20px;
-  background-color: dodgerblue;
-  border: 1px solid #ddd;
-  color: white;
-  cursor: pointer;
+.mpControl-label {
+  display: inline-block;
   width: auto;
 }
 
-.form-inline button:hover {
-  background-color: royalblue;
-}
-
-@media (max-width: 800px) {
-  .form-inline input {
-    margin: 5px 10px;
-    width: 100%;
-  }
-  
-  .form-inline {
-    flex-direction: column;
-    align-items: stretch;
-  }
-} */
-
-.mpControl {
-  margin: 10px 0;
-}
-.mpControl span {
+.mpControl-wrapper {
   display: inline-block;
-  margin: 0 10px;
-  min-width: 80px;
+  width: 200px;
 }
 
 .mpControl input {
-  width:200px;
+  width: 100%;
+}
+.mpControl input[type="checkbox"] {
+  width: auto;
 }
 
 .mpControl input[type=text], input[type=date], input[type=tel], input[type=number], input[type=email] {
-  writing-mode: horizontal-tb !important;
-  text-rendering: auto;
-  letter-spacing: normal;
-  word-spacing: normal;
-  text-transform: none;
-  text-indent: 0px;
-  text-shadow: none;
-  cursor: auto;
   display: inline-block;
-  text-align: start;
-  -webkit-appearance: textfield;
-  -webkit-rtl-ordering: logical;
+  cursor: auto;
   margin: 0;
   font: 400 12px "Segoe UI";
   padding: 1px 2px;
@@ -128,7 +86,6 @@
   white-space: nowrap;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  margin: 0 10px 0 100px;
   padding: 4px;
 }
 .mpSelect-content option {
@@ -147,7 +104,7 @@
   border: 0;
   width: 100%;
 }
-.mpSelect-content input {
+/* .mpSelect-content input {
   width: auto;
   margin: 2px;
   position: relative;
@@ -155,7 +112,9 @@
   cursor: pointer;
   -webkit-appearance: checkbox;
   box-sizing: border-box;
-}
+} */
+
+
 .mpSelect-content label {
   cursor: pointer;
 }
@@ -166,6 +125,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: var(--light-color);
 	border: 1px solid var(--secondary-color);
 	min-width: 200px;
 	min-height: 100px;
@@ -234,4 +194,105 @@ tbody tr {
 }
 tbody tr:hover {
   background: #e6f7ff;
+}
+
+
+@media (max-width: 800px) {
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .mpControl {
+    width: 100%;
+  }
+  .mpControl-label {
+    display: block;
+    width: 100%;
+  }
+  .mpControl-wrapper {
+    display: block;
+    width: 100%;
+  }
+}
+
+.mpCal {
+  background-color: var(--light-color);
+  border: solid 1px var(--secondary-color);
+  box-shadow: 0 4px 22px 0 rgba(black, 0.05);
+  margin: 0 auto;
+  overflow: hidden;
+  width: 400px;
+}
+
+.mpCal-btn {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-appearance: button;
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  line-height: normal;
+  min-width: 27px;
+  outline: none;
+  overflow: visible;
+  padding: 0;
+  text-align: center;
+}
+
+.mpCal-header {
+  align-items: center;
+  display: flex;
+  padding: 0.25rem 1.4rem;
+}
+
+.mpCal-header__label {
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+
+.mpCal-week {
+  background-color: var(--secondary-color);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+  .mpCal-week span {
+    flex-direction: column;
+    flex: 0 0 14.28%;
+    font-weight: bold;
+    max-width: 14.28%;
+    padding: 0.3rem 1.4rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+.mpCal-body {
+  background-color: var(--light-color);
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px 0;
+}
+
+.mpCal-date {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 14.28%;
+  max-width: 14.28%;
+  padding: 0.3rem 0;
+  cursor: pointer;
+  /*border: 2px solid var(--light-color);*/
+}
+
+.mpCal-date:hover, .mpCal-date:focus {
+  outline: 2px solid var(--secondary-color);
+}
+
+.mpCal-disabled {
+  border-radius: 0;
+  cursor: not-allowed;
+  opacity: 0.5;
 }

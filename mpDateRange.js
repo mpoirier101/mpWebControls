@@ -20,34 +20,40 @@
       this._element.dispatchEvent(new CustomEvent(event, { detail: obj }));
     };
 
+    // start control
+    if (captions[0]) {
+      var lbl = this._element.appendChild(document.createElement("div"));
+      lbl.classList.add("mpControl-label");
+      lbl.innerText = captions[0];
+    }
+    var wrapperStart = this._element.appendChild(document.createElement("div"));
+    wrapperStart.classList.add("mpControl-wrapper");
     // input start control
-    this.start = document.createElement("input");
+    this.start = wrapperStart.appendChild(document.createElement("input"));
     this.start.type = "date";
     this.start.id = selector + "start";
     this.start.name = selector + "start";
-    if (captions[0]) {
-      var lbl = this._element.appendChild(document.createElement("span"));
-      lbl.innerText = captions[0];
-    }
     if (placeholders[0]) { this.start.placeholder = placeholders[0]; }
     if (required) { this.start.required = true; }
     if (pattern) { this.start.pattern = pattern; }
-    this._element.appendChild(this.start);
     this.start.addEventListener('input', this.inputHandler, true);
 
+    // end control
+    if (captions[1]) {
+      var lbl = this._element.appendChild(document.createElement("div"));
+      lbl.classList.add("mpControl-label");
+      lbl.innerText = captions[1];
+    }
+    var wrapperEnd = this._element.appendChild(document.createElement("div"));
+    wrapperEnd.classList.add("mpControl-wrapper");
     // input end control
-    this.end = document.createElement("input");
+    this.end = wrapperEnd.appendChild(document.createElement("input"));
     this.end.type = "date";
     this.end.id = selector + "end";
     this.end.name = selector + "end";
-    if (captions[1]) {
-      var lbl = this._element.appendChild(document.createElement("span"));
-      lbl.innerText = captions[1];
-    }
     if (placeholders[1]) { this.end.placeholder = placeholders[1]; }
     if (required) { this.end.required = true; }
     if (pattern) { this.end.pattern = pattern; }
-    this._element.appendChild(this.end);
     this.end.addEventListener('input', this.inputHandler, true);
     
     if (values.length == 2) {

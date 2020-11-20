@@ -20,28 +20,33 @@ class mpSelectMany {
       this._element.dispatchEvent(new CustomEvent(event, { detail: obj }));
     };
 
+    // caption
+    if (caption) {
+      var lbl = this._element.appendChild(document.createElement("div"));
+      lbl.classList.add("mpControl-label");
+      lbl.innerText = caption;
+    }
+
+    var wrapper = this._element.appendChild(document.createElement("div"));
+    wrapper.classList.add("mpControl-wrapper");
+    
     // input ctrl
-    this.ctrl = document.createElement("input");
+    this.ctrl = wrapper.appendChild(document.createElement("input"));
     this.ctrl.type = "text";
     this.ctrl.id = selector + "input";
     this.ctrl.name = selector;
     this.ctrl.readOnly = true;
-
-    if (caption) {
-      var lbl = this._element.appendChild(document.createElement("span"));
-      lbl.innerText = caption;
-    }
     if (placeholder) {
       this.ctrl.placeholder = placeholder;
     }
     if (required) {
       this.ctrl.required = true;
     }
-    this._element.appendChild(this.ctrl);
 
     // input content
-    this.content = document.createElement("div");
+    this.content = wrapper.appendChild(document.createElement("div"));
     this.content.classList.add("mpSelect-content");
+    this.content.addEventListener('input', this.inputHandler, true);
 
     if (list && list.length > 0) {
       var content = this.content;
@@ -71,8 +76,6 @@ class mpSelectMany {
       this.ctrl.value = desc;
       this.ctrl.title = desc;
     }
-    this._element.appendChild(this.content);
-    this.content.addEventListener('input', this.inputHandler, true);
   }
 }
 mpSelectMany.prototype.oninput = function (event) {

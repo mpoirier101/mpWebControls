@@ -3,20 +3,18 @@
   <head>
     <title>Controls</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" media="screen" href="/css/mp.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="/css/mp-components.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="/css/mpCalendar.css" />
 
-    <script src="mpCalendar.js"></script>
     <script src="mpTextBox.js"></script>
     <script src="mpSelect.js"></script>
     <script src="mpSelectMany.js"></script>
     <script src="mpDateRange.js"></script>
+    <script src="mpCalendar.js"></script>
     <script src="mpDialog.js"></script>
     <script src="mpTable.js"></script>
   </head>
   <body>
-    <h3>Test Controls</h3>
+    <h1>Test Controls</h1>
 
     <form class="form-inline">
       <div id="fullname"></div>
@@ -25,30 +23,17 @@
       <div id="date"></div>
       <div id="period"></div>
     </form>
-      
+
+    <div id="mpCal"></div>
+  
+
     <button id="btnDialog">Show Dialog</button>
 
     <mp-table id="members" style="display:none;"></mp-table>
 
     <div id="dialog">
-      <div id="mpCal" >
-      </div>
     </div>
 
-
-    <!-- <table>
-      <thead>
-        <tr><th class="blue">header</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>main content: fills remaining space<br>
-            x<br>x<br>x<br>x<br>x<br>x<br>x<br>x<br>x<br>x<br>
-          </td>
-        </tr>
-      </tbody>
-    </table>
- -->
     <script>
       var orders = [
         ["asc", "Ascending"],
@@ -133,6 +118,9 @@
         // ---------------------------------
         var mpCal = new mpCalendar("mpCal", {
           disablePastDays: true
+        });
+        mpCal.on("changed", function(e){
+          console.log(e.detail);
         });
 
         // ---------------------------------
