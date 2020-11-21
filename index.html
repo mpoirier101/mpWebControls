@@ -24,9 +24,7 @@
         <div id="date"></div>
         <div id="period"></div>
       </div>
-
       <div id="mpCal"></div>
-
       <button type="submit" id="btnSubmit">Submit</button>
     </form>  
 
@@ -157,7 +155,7 @@
         var district = new mpSelectMany("district", {
           caption: "District(s):",
           list: districts, 
-          value: selectedDistrict,
+          values: selectedDistrict,
         });
         district.on("changed", function(e){
           console.log(e.detail);
@@ -168,7 +166,7 @@
         // ---------------------------------
         var date = new mpText("date", {
           type: "date",
-          //value: selectedDate,
+          value: selectedDate,
           caption: "Select Date:",
           pattern: "\d{4}-\d{2}-\d{2}",
           required: true,
@@ -233,9 +231,10 @@
           var form = document.querySelector('form');
           var formData = new FormData(form);
           var object = {};
-          formData.forEach(function (value, key) {
+          for (var key of formData.keys()) {
+            var value = formData.get(key);
             object[key] = value;
-          });
+          }
           var json = JSON.stringify(object);
           console.log(`FormData: ${json}`);
         });

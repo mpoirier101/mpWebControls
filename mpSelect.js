@@ -5,6 +5,7 @@ class mpSelect {
     this._element.classList.add("mpControl");
 
     this.options = options;
+    var name = options.name || this._element.getAttribute("name") || selector;
     var caption = options.caption || this._element.getAttribute("caption") || "";
     var placeholder = options.placeholder || this._element.getAttribute("placeholder") || "Enter text";
     var value = options.value || this._element.getAttribute("value") || "";
@@ -19,6 +20,11 @@ class mpSelect {
     this.fireEvent = function (event, obj) {
       this._element.dispatchEvent(new CustomEvent(event, { detail: obj }));
     };
+
+    // hidden input for form
+    this.input = this._element.appendChild(document.createElement("input"));
+    this.input.type = "hidden";
+    this.input.name = name;
 
     // caption
     if (caption) {
@@ -50,21 +56,19 @@ class mpSelect {
 
     if (list && list.length > 0) {
       var content = this.content;
-      var ctrl = this.ctrl;
-      var description = "";
+      var me = this;
       content.innerHTML = "";
       list.forEach(function (item, i) {
         var option = document.createElement("option");
         option.value = item[0];
         option.text = item[1];
         if (value == item[0]) {
-          description = item[1];
+          me.input.value = item[0];
+          me.ctrl.value = item[1];
+          me.ctrl.title = item[1];
         }
         content.append(option);
       });
-
-      this.ctrl.value = description;
-      this.ctrl.title = description;
     }
   }
 }
@@ -73,6 +77,7 @@ mpSelect.prototype.onclick = function (event) {
   if (event.target.text) {
     this.ctrl.value = event.target.text;
     this.ctrl.title = event.target.text;
+    this.input.value = event.target.value;
     this.fireEvent("changed", event.target.value);
   }
 }

@@ -7,11 +7,11 @@ class mpCalendar {
     this._element.classList.add("mpCal");
 
     this.options = options;
-    this.disablePastDays = options.disablePastDays || this._element.getAttribute("disablePastDays") || "";
+    var name = options.name || this._element.getAttribute("name") || selector;
     var caption = options.caption || this._element.getAttribute("caption") || "";
     var width = options.width || this._element.getAttribute("width") || "400px";
     var height = options.height || this._element.getAttribute("height") || "";
-    var name = options.name || this._element.getAttribute("name") || selector;
+    this.disablePastDays = options.disablePastDays || this._element.getAttribute("disablePastDays") || "";
 
     // events
     this.clickHandler = this.onclick.bind(this);
@@ -35,9 +35,10 @@ class mpCalendar {
     this.input = this._element.appendChild(document.createElement("input"));
     this.input.type = "hidden";
     this.input.name = name;
+    this.input.value = this.dateyyyymmdd(this.selectedDate);
 
     // calendar header
-    var header = this._element.insertAdjacentElement("afterbegin", document.createElement("header"));
+    var header = this._element.appendChild(document.createElement("header"));
     header.classList.add("mpCal-header","theme");
 
     // calendar weekdays

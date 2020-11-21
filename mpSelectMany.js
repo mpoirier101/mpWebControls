@@ -5,9 +5,10 @@ class mpSelectMany {
     this._element.classList.add("mpControl");
 
     this.options = options;
+    var name = options.name || this._element.getAttribute("name") || selector;
     var caption = options.caption || this._element.getAttribute("caption") || "";
     var placeholder = options.placeholder || this._element.getAttribute("placeholder") || "Enter text";
-    var value = options.value || this._element.getAttribute("value") || "";
+    var values = options.values || this._element.getAttribute("values") || "";
     var required = options.required || this._element.getAttribute("required") || "";
     var list = options.list || (this._element.getAttribute("list") || "").split(',');
 
@@ -19,6 +20,12 @@ class mpSelectMany {
     this.fireEvent = function (event, obj) {
       this._element.dispatchEvent(new CustomEvent(event, { detail: obj }));
     };
+
+    // hidden input for form
+    this.input = this._element.appendChild(document.createElement("input"));
+    this.input.type = "hidden";
+    this.input.name = name;
+    this.input.value = values;
 
     // caption
     if (caption) {
@@ -59,7 +66,7 @@ class mpSelectMany {
         checkbox.id = ctrl.id + item[0];
         checkbox.name = selector;
         checkbox.value = item[0];
-        if (value && value.indexOf(item[0]) > -1) {
+        if (values && values.indexOf(item[0]) > -1) {
           checkbox.checked = true;
           descriptions.push(item[1]);
         }
@@ -91,5 +98,6 @@ mpSelectMany.prototype.oninput = function (event) {
   var val = values.join(",");
   this.ctrl.value = desc;
   this.ctrl.title = desc;
+  this.input.value = val;
   this.fireEvent("changed", val);
 };
