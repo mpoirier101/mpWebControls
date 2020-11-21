@@ -11,6 +11,7 @@ class mpCalendar {
     var caption = options.caption || this._element.getAttribute("caption") || "";
     var width = options.width || this._element.getAttribute("width") || "400px";
     var height = options.height || this._element.getAttribute("height") || "";
+    var name = options.name || this._element.getAttribute("name") || selector;
 
     // events
     this.clickHandler = this.onclick.bind(this);
@@ -30,6 +31,11 @@ class mpCalendar {
     if (width) { this._element.style.width = width; }
     if (height) { this._element.style.height = height; }
     
+    // hidden input for form
+    this.input = this._element.appendChild(document.createElement("input"));
+    this.input.type = "hidden";
+    this.input.name = name;
+
     // calendar header
     var header = this._element.insertAdjacentElement("afterbegin", document.createElement("header"));
     header.classList.add("mpCal-header","theme");
@@ -97,9 +103,6 @@ class mpCalendar {
     }
     this.date.setDate(this.date.getDate() - 1);
     this.date.setDate(1);
-    this.selectedDate.setDate(this.date.getDate());
-    this.selectedDate.setMonth(this.date.getMonth());
-    
     this.label.innerHTML = this.monthsAsString(this.date.getMonth()) + ' ' + this.date.getFullYear();
   }
 
@@ -107,7 +110,6 @@ class mpCalendar {
     var newDay = document.createElement('div');
     newDay.innerHTML = num;
     newDay.classList.add('mpCal-date');
-    
     // if it's the first day of the month
     if (num === 1) {
       if (day === 0) {
@@ -121,6 +123,9 @@ class mpCalendar {
     }
     if (this.date.valueOf() == this.todaysDate.valueOf()) {
       newDay.classList.add("theme2");
+    }
+    if (this.date.valueOf() == this.selectedDate.valueOf()) {
+      newDay.classList.add("mpCal-selected");
     }
     this.month.appendChild(newDay);
   }
@@ -165,7 +170,9 @@ mpCalendar.prototype.onclick = function (event) {
     this.clearSelected();
     event.target.classList.add("mpCal-selected");
     var date = Number.parseInt(event.target.textContent);
+    this.selectedDate = new Date(this.date.toDateString());
     this.selectedDate.setDate(date);
+    this.input.value = this.dateyyyymmdd(this.selectedDate);
     this.fireEvent("changed", this.dateyyyymmdd(this.selectedDate));
   }
 }

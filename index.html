@@ -16,23 +16,25 @@
   <body>
     <h1>Test Controls</h1>
 
-    <form class="form-inline">
-      <div id="fullname"></div>
-      <div id="sort"></div>
-      <div id="district"></div>
-      <div id="date"></div>
-      <div id="period"></div>
-    </form>
+    <form>
+      <div class="form-inline">
+        <div id="fullname"></div>
+        <div id="sort"></div>
+        <div id="district"></div>
+        <div id="date"></div>
+        <div id="period"></div>
+      </div>
 
-    <div id="mpCal"></div>
-  
+      <div id="mpCal"></div>
 
-    <button id="btnDialog">Show Dialog</button>
+      <button type="submit" id="btnSubmit">Submit</button>
+    </form>  
+
+    <button type="button" id="btnDialog">Show Dialog</button>
 
     <mp-table id="members" style="display:none;"></mp-table>
 
-    <div id="dialog">
-    </div>
+    <div id="dialog"></div>
 
     <script>
       var orders = [
@@ -179,7 +181,7 @@
         // mp-daterange
         // ---------------------------------
         var period = new mpDateRange("period", {
-          value: selectedDates,
+          values: selectedDates,
           captions: ["Debut:","Fin:"],
           pattern: "\d{4}-\d{2}-\d{2}",
           required: true,
@@ -221,6 +223,23 @@
         table.addEventListener("rowClick", function (event) {
           console.log("Row Click event fired: " + event.detail.value);
         });
+
+
+        // ---------------------------------
+        // form
+        // ---------------------------------
+        document.querySelector("form").addEventListener("submit", function (event) {
+          event.preventDefault();
+          var form = document.querySelector('form');
+          var formData = new FormData(form);
+          var object = {};
+          formData.forEach(function (value, key) {
+            object[key] = value;
+          });
+          var json = JSON.stringify(object);
+          console.log(`FormData: ${json}`);
+        });
+
 
         // ---------------------------------
         // load sample json data from file
