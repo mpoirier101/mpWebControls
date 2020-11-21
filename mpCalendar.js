@@ -167,10 +167,11 @@ class mpCalendar {
 }
 mpCalendar.prototype.onclick = function (event) {
   event.stopImmediatePropagation();
-  if (event.target.textContent) {
+  var day = event.target;
+  if (day.textContent && !day.classList.contains("mpCal-disabled")) {
     this.clearSelected();
-    event.target.classList.add("mpCal-selected");
-    var date = Number.parseInt(event.target.textContent);
+    day.classList.add("mpCal-selected");
+    var date = Number.parseInt(day.textContent);
     this.selectedDate = new Date(this.date.toDateString());
     this.selectedDate.setDate(date);
     this.input.value = this.dateyyyymmdd(this.selectedDate);
