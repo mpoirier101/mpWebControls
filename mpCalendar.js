@@ -22,9 +22,9 @@ class mpCalendar {
     };
 
     this.todaysDate = new Date(new Date().toDateString());
+    this.selectedDate = new Date(new Date().toDateString());
     this.date = new Date(new Date().toDateString());
     this.date.setDate(1);
-    this.selectedDate = new Date(new Date().toDateString());
 
     // calendar ctrl
     if (width) { this._element.style.width = width; }
@@ -36,7 +36,7 @@ class mpCalendar {
 
     // calendar weekdays
     var week = this._element.appendChild(document.createElement("div"));
-    week.classList.add("mpCal-week", "sm");
+    week.classList.add("mpCal-week", "theme2");
 
     // calendar month
     this.month = this._element.appendChild(document.createElement("content"));
@@ -82,7 +82,6 @@ class mpCalendar {
     this.month.innerHTML = '';
     var val = Number.parseInt(e.target.value);
     this.date.setMonth(this.date.getMonth() + val);
-    this.selectedDate = this.date;
     this.createMonth();
   }
   
@@ -96,18 +95,18 @@ class mpCalendar {
       );
       this.date.setDate(this.date.getDate() + 1);
     }
-    // while loop trips over and day is at 30/31, bring it back
+    this.date.setDate(this.date.getDate() - 1);
     this.date.setDate(1);
-    this.date.setMonth(this.date.getMonth() - 1);
-    this.selectedDate = this.date;
+    this.selectedDate.setDate(this.date.getDate());
+    this.selectedDate.setMonth(this.date.getMonth());
+    
     this.label.innerHTML = this.monthsAsString(this.date.getMonth()) + ' ' + this.date.getFullYear();
   }
 
   createDay(num, day, year) {
     var newDay = document.createElement('div');
     newDay.innerHTML = num;
-    newDay.className = 'mpCal-date';
-    newDay.tabIndex = -1;
+    newDay.classList.add('mpCal-date');
     
     // if it's the first day of the month
     if (num === 1) {
@@ -121,7 +120,7 @@ class mpCalendar {
       newDay.classList.add('mpCal-disabled');
     }
     if (this.date.valueOf() == this.todaysDate.valueOf()) {
-      newDay.classList.add("theme");
+      newDay.classList.add("theme2");
     }
     this.month.appendChild(newDay);
   }
@@ -143,10 +142,11 @@ class mpCalendar {
     ][monthIndex];
   }
 
-  removeActiveClass() {
-    for (var i = 0; i < this.activeDates.length; i++) {
-      this.activeDates[i].classList.remove('mpCal-date--selected');
-    }
+  clearSelected() {
+    var dates = this.month.querySelectorAll(".mpCal-date");
+    dates.forEach(day => {
+      day.classList.remove("mpCal-selected");
+    })
   }
 
   dateyyyymmdd(date) {
@@ -158,11 +158,12 @@ class mpCalendar {
 			(dd > 9 ? '' : '0') + dd
 		].join('-');
 	}
-
 }
 mpCalendar.prototype.onclick = function (event) {
   event.stopImmediatePropagation();
   if (event.target.textContent) {
+    this.clearSelected();
+    event.target.classList.add("mpCal-selected");
     var date = Number.parseInt(event.target.textContent);
     this.selectedDate.setDate(date);
     this.fireEvent("changed", this.dateyyyymmdd(this.selectedDate));

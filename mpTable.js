@@ -30,7 +30,7 @@
     json = options.json || "";
 
     me.shadow = me.attachShadow({ mode: "open" });
-    me.shadow.innerHTML = `<link rel="stylesheet" type="text/css" href="/css/mp-components.css">`;
+    me.shadow.innerHTML = `<link rel="stylesheet" type="text/css" href="/css/mpControls.css">`;
     if (themeUrl) { me.shadow.innerHTML += `<link rel="stylesheet" type="text/css" href="${themeUrl}">`; }
     me.shadow.innerHTML += `<div class="tableWrap"><table><thead></thead><tbody></tbody></table></div>`;
 
