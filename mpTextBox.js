@@ -22,6 +22,9 @@
       this._element.dispatchEvent(new CustomEvent(event, { detail: obj }));
     };
 
+
+    
+
     // caption
     if (caption) {
       var lbl = this._element.appendChild(document.createElement("div"));
@@ -58,6 +61,6 @@
 }
 mpText.prototype.oninput = function (event) {
   event.stopImmediatePropagation();
-  this.fireEvent("input", this.ctrl.value);
+  this.fireEvent("changed", this.ctrl.value);
 };
 

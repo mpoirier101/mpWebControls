@@ -21,12 +21,12 @@ class mpSelect {
       this._element.dispatchEvent(new CustomEvent(event, { detail: obj }));
     };
 
-    // hidden input for form
-    this.input = this._element.appendChild(document.createElement("input"));
-    this.input.type = "hidden";
-    this.input.name = name;
+  // hidden input for form
+  this.input = this._element.appendChild(document.createElement("input"));
+  this.input.type = "hidden";
+  this.input.name = name;
 
-    // caption
+   // caption
     if (caption) {
       var lbl = this._element.appendChild(document.createElement("div"));
       lbl.classList.add("mpControl-label");
@@ -40,8 +40,11 @@ class mpSelect {
     this.ctrl = wrapper.appendChild(document.createElement("input"));
     this.ctrl.type = "text";
     this.ctrl.id = selector + "input";
-    this.ctrl.name = selector;
-    this.ctrl.readOnly = true;
+    this.ctrl.autocomplete = false;
+    this.ctrl.onkeypress = function (event) {
+      event.target.value = "";
+      return false;
+    }
     if (placeholder) {
       this.ctrl.placeholder = placeholder;
     }
@@ -53,11 +56,11 @@ class mpSelect {
     this.content = wrapper.appendChild(document.createElement("div"));
     this.content.classList.add("mpSelect-content");
     this.content.addEventListener('click', this.clickHandler, true);
+    this.content.innerHTML = "";
 
     if (list && list.length > 0) {
       var content = this.content;
       var me = this;
-      content.innerHTML = "";
       list.forEach(function (item, i) {
         var option = document.createElement("option");
         option.value = item[0];
