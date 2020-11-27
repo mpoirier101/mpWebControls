@@ -1,9 +1,19 @@
 
+.mpControl-nowrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
 .mpControl {
   padding: 5px;
-  min-width: 200px;
-  overflow-y: visible;
 }
+
+.mpControl.small {
+  padding: 5px 0;
+}
+
 .mpControl:hover .mpSelect-content{
   display:block
 }
@@ -17,7 +27,14 @@
 
 .mpControl-wrapper {
   display: inline-block;
-  width: 200px;
+  width: 100%;
+  min-width: 100px;
+  max-width: 200px;
+}
+
+.small .mpControl-wrapper {
+  min-width: 50px;
+  max-width: 100px;
 }
 
 .mpControl input:focus {
@@ -137,7 +154,6 @@
 
 .mpTable {
   padding: 1px;
-  margin: 0 auto;
   overflow-y: scroll;
   border: solid 1px var(--medium-color);
 }
@@ -149,13 +165,11 @@
 .mpTable tbody tr {
   border-bottom: 1px solid gray;
 }
-.mpTable tbody tr:nth-child(even) {
-  background-color: var(--light-color);
+.mpTable tbody tr:hover {
+  background-color: var(--secondary-color);
+  color: var(--light-color);
 }
-.mpTable tr:hover {
-	background-color: var(--secondary-color);
-	color: var(--light-color);
-}
+
 .mpTable th {
   position: sticky;
   top: 0;
@@ -170,6 +184,7 @@
 
 
 .mpCal {
+  padding: 1px;
   background-color: var(--light-color);
   border: solid 1px var(--medium-color);
   overflow: hidden;
@@ -247,7 +262,11 @@
 }
 
 @media (max-width: 800px) {
-  .mpControl {
+  .mpControl-nowrap {
+    flex-wrap: wrap;
+   }
+    .mpControl {
+    display: block;
     width: 100%;
   }
   .mpControl-label {
@@ -257,6 +276,6 @@
   .mpControl-wrapper {
     display: block;
     width: 100%;
+    max-width: 100%;
   }
 }
-

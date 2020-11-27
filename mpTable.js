@@ -23,13 +23,15 @@
       this._element.dispatchEvent(new CustomEvent(event, { detail: obj }));
     };
 
+    if (width) this._element.style.width = width;
     if (width) this._element.style.maxWidth = width;
+    //if (height) this._element.style.height = height;
     if (height) this._element.style.maxHeight = height;
 
     // table
-    me.table = this._element.insertAdjacentElement("afterbegin", document.createElement("table"));
-    if (width) me.table.style.maxWidth = width;
-    if (height) me.table.style.maxHeight = height;
+    me.table = this._element.appendChild(document.createElement("table"));
+    //if (width) me.table.style.maxWidth = width;
+    //if (height) me.table.style.maxHeight = height;
 
     // table header
     me.thead = me.table.appendChild(document.createElement("thead"));

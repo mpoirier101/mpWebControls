@@ -20,13 +20,18 @@
       this._element.dispatchEvent(new CustomEvent(event, { detail: obj }));
     };
 
+
+    // control wrapper
+    var wrapper = this._element.appendChild(document.createElement("div"));
+    wrapper.classList.add("mpControl-nowrap");
+    
     // start control
     if (captions[0]) {
-      var lbl = this._element.appendChild(document.createElement("div"));
+      var lbl = wrapper.appendChild(document.createElement("div"));
       lbl.classList.add("mpControl-label");
       lbl.innerText = captions[0];
     }
-    var wrapperStart = this._element.appendChild(document.createElement("div"));
+    var wrapperStart = wrapper.appendChild(document.createElement("div"));
     wrapperStart.classList.add("mpControl-wrapper");
     // input start control
     this.start = wrapperStart.appendChild(document.createElement("input"));
@@ -40,11 +45,11 @@
 
     // end control
     if (captions[1]) {
-      var lbl = this._element.appendChild(document.createElement("div"));
+      var lbl = wrapper.appendChild(document.createElement("div"));
       lbl.classList.add("mpControl-label");
       lbl.innerText = captions[1];
     }
-    var wrapperEnd = this._element.appendChild(document.createElement("div"));
+    var wrapperEnd = wrapper.appendChild(document.createElement("div"));
     wrapperEnd.classList.add("mpControl-wrapper");
     // input end control
     this.end = wrapperEnd.appendChild(document.createElement("input"));

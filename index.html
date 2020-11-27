@@ -16,6 +16,7 @@
     <script src="mpTable.js"></script>
   </head>
   <body>
+    
     <h1>Test Controls</h1>
 
     <form>
@@ -26,6 +27,7 @@
         <div id="date"></div>
         <div id="period"></div>
       </div>
+
       <div class="section">
         <div class="centered">
           <div id="calendar" ></div>
@@ -41,9 +43,11 @@
   </form>  
 
 
-    <div class="section center">
+  <div class="section">
+    <div class="centered">
       <div id="members"></div>
     </div>
+  </div>
 
     <div id="dialog"></div>
 
@@ -263,7 +267,7 @@
         var table = new mpTable("members", {
           caption: "mpTable example",
           width: "800px",
-          height: "300px",
+          height: "200px",
           columns: columns,
           //data: members, // initialize with array
           //json: json, // initialize with JSON
