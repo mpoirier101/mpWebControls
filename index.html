@@ -3,9 +3,11 @@
   <head>
     <title>Controls</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/mp.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="/css/mpControls.css" />
 
     <script src="mpTextBox.js"></script>
+    <script src="mpRadio.js"></script>
     <script src="mpSelect.js"></script>
     <script src="mpSelectMany.js"></script>
     <script src="mpDateRange.js"></script>
@@ -17,20 +19,31 @@
     <h1>Test Controls</h1>
 
     <form>
-      <div class="form-inline">
+      <div class="navbar small theme">
         <div id="fullname"></div>
         <div id="sort"></div>
         <div id="district"></div>
         <div id="date"></div>
         <div id="period"></div>
       </div>
-      <div id="mpCal"></div>
-      <button type="submit" id="btnSubmit">Submit</button>
-    </form>  
+      <div class="section">
+        <div class="centered">
+          <div id="calendar" ></div>
+          <div id="horaire" ></div>
+        </div>
+      </div>
 
-    <button type="button" id="btnDialog">Show Dialog</button>
+      <div class="section">
+        <div class="centered">
+        <button type="submit" id="btnSubmit" class="btn theme">Submit</button>
+        <button type="button" id="btnDialog" class="btn theme">Show Dialog</button>
+      </div>
+  </form>  
 
-    <mp-table id="members" style="display:none;"></mp-table>
+
+    <div class="section center">
+      <div id="members"></div>
+    </div>
 
     <div id="dialog"></div>
 
@@ -48,6 +61,24 @@
         ["5", "District 5"],
         ["6", "District 6"],
         ["7", "District 7"],
+      ];
+
+      var horaires = [
+        [
+          ["08:00", "08:00 - 08:30"],
+          ["09:30", "09:30 - 10:00"],
+          ["13:00", "13:00 - 13:30"],
+          ["15:30", "15:30 - 16:00"],
+        ],
+        [
+          ["08:00", "08:00 - 08:30"],
+          ["09:00", "09:00 - 09:30"],
+          ["10:00", "10:00 - 10:30"],
+          ["10:30", "10:30 - 11:00"],
+          ["11:00", "11:00 - 11:30"],
+          ["14:00", "14:00 - 14:30"],
+          ["15:30", "15:30 - 16:00"],
+        ]
       ];
 
       var savings = [
@@ -112,16 +143,6 @@
   <script>
 
       (function () {
-
-        // ---------------------------------
-        // mpCalendar
-        // ---------------------------------
-        var mpCal = new mpCalendar("mpCal", {
-          disablePastDays: true
-        });
-        mpCal.on("changed", function(e){
-          console.log(e.detail);
-        });
 
         // ---------------------------------
         // mp-text
@@ -191,6 +212,33 @@
         });
 
         // ---------------------------------
+        // mpCalendar
+        // ---------------------------------
+        var cal = new mpCalendar("calendar", {
+          disablePastDays: true
+        });
+        cal.on("changed", function(e){
+          console.log(e.detail);
+          var date = new Date(e.detail).getDate();
+          var idx = date % 2
+          window.horaire.setList(horaires[idx]);
+        });
+
+        // ---------------------------------
+        // mpRadio
+        // ---------------------------------
+        window.horaire = new mpRadio("horaire", {
+          caption: "Horaire:",
+          name: "heure",
+          //list: horaires[0], 
+          required: true,
+        });
+        horaire.on("changed", function(e){
+          console.log(e.detail);
+        });
+
+
+        // ---------------------------------
         // mp-dialog
         // ---------------------------------
         var dialog = new mpDialog("dialog", {
@@ -206,22 +254,22 @@
         var btn = document.getElementById("btnDialog");
         btn.addEventListener("click", function (event) {
           dialog.open();
+          return false;
         });
       
         // ---------------------------------
         // mp-table
         // ---------------------------------
-        var table = document.getElementById("members");
-        table.init({
+        var table = new mpTable("members", {
           caption: "mpTable example",
-          width: "600px",
-          height: "400px",
+          width: "800px",
+          height: "300px",
           columns: columns,
           //data: members, // initialize with array
           //json: json, // initialize with JSON
         });
-        table.addEventListener("rowClick", function (event) {
-          console.log("Row Click event fired: " + event.detail.value);
+        table.on("rowClick", function (event) {
+          console.log("Row Click event fired: " + event.detail);
         });
 
 

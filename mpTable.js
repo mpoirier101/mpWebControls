@@ -1,57 +1,47 @@
-﻿class mpTable extends HTMLElement {
+﻿class mpTable  {
+  constructor(selector, options) {
 
-  constructor() {
-    super();
-  }
-  // connectedCallback() {}
-  // disconnectedCallback() {}
-
-  _theme = "";
-  _columns = [];
-  _data = [];
-  _sortOrder = 1;
-  _sortProp = "";
-  
-  init(options = {}) {
     const me = this;
+    this._element = document.getElementById(selector);
+    this._element.classList.add("mpTable");
 
-    var width = 0;
-    var height = 0;
-    var themeUrl = "";
-    var json = "";
-  
-    width = options.width || me.getAttribute("width") || "100%";
-    height = options.height || me.getAttribute("height") || "";
-    themeUrl = options.themeUrl;
-    
-    me._theme = options.theme || "";
+    this.options = options;
+    var width = options.width || me.getAttribute("width") || "100%";
+    var height = options.height || me.getAttribute("height") || "";
+    var json = options.json || "";
     me._columns = options.columns || [];
     me._data = options.data || [];
-    json = options.json || "";
+    me._sortOrder = options.sortOrder || 1;
+    me._sortProp = options.sortProp || "";
 
-    me.shadow = me.attachShadow({ mode: "open" });
-    me.shadow.innerHTML = `<link rel="stylesheet" type="text/css" href="/css/mpControls.css">`;
-    if (themeUrl) { me.shadow.innerHTML += `<link rel="stylesheet" type="text/css" href="${themeUrl}">`; }
-    me.shadow.innerHTML += `<div class="tableWrap"><table><thead></thead><tbody></tbody></table></div>`;
+    // events
+    this.clickHandler = this.onclick.bind(this);
+    this.on = function (event, func) {
+      this._element.addEventListener(event, func);
+    };
+    this.fireEvent = function (event, obj) {
+      this._element.dispatchEvent(new CustomEvent(event, { detail: obj }));
+    };
 
-    me.RowClickEvent = new CustomEvent("rowClick", {
-      bubbles: true,
-      cancelable: false,
-      composed: true,
-      detail: { value: "" },
-    });
+    if (width) this._element.style.maxWidth = width;
+    if (height) this._element.style.maxHeight = height;
 
-    me.table = me.shadow.querySelector(".tableWrap");
-    if (width) me.table.setAttribute('width', width);
+    // table
+    me.table = this._element.insertAdjacentElement("afterbegin", document.createElement("table"));
     if (width) me.table.style.maxWidth = width;
-    if (height) me.table.setAttribute('height', height);
     if (height) me.table.style.maxHeight = height;
+
+    // table header
+    me.thead = me.table.appendChild(document.createElement("thead"));
+
+    // table body
+    me.tbody = me.table.appendChild(document.createElement("tbody"));
 
     if (json) {
       me._data = JSON.parse(json);
     }
     if (me._data) {
-      me._printTable(me._data, me._columns);
+      me._printTable();
     }
   }
 
@@ -76,41 +66,33 @@
 
   _printTable() {
     const me = this;
-    var thead = me.shadow.querySelector("thead");
-    var tbody = me.shadow.querySelector("tbody");
-    thead.innerHTML = "";
-    tbody.innerHTML = "";
-    printHeader(thead, me._columns);
-    printRows(tbody, me._data, me._columns);
+    me.thead.innerHTML = "";
+    me.tbody.innerHTML = "";
+    printHeader(me.thead, me._columns);
+    printRows(me.tbody, me._data, me._columns);
 
     function printHeader(thead, columns) {
       var tr = document.createElement('tr');
       columns.forEach(function (col, i) {
         var th = document.createElement('th');
-        if (me._theme) th.classList.add(me._theme);
+        th.classList.add("theme");
         th.innerHTML = col.display;
         if (col.sort) th.innerHTML += (col.sort == 1) ? " &#9650;" : " &#9660;";
-
         th.addEventListener("click", function (e) {
           headClick(col);
         }, false);
-
         tr.append(th);
       });
       thead.append(tr);
     }
 
     function printRows(tbody, items, columns) {
-      const me = this;
+      //const me = this;
       items.forEach(function (item) {
         var tr = document.createElement('tr');
         if (item.id) {
           tr.setAttribute('id', item.id);
-
-          tr.addEventListener("click", function (e) {
-            rowClick(this);
-          }, false);
-
+          tr.addEventListener('click', me.clickHandler, true);
         }
         columns.forEach(function (col, i) {
           var td = document.createElement('td');
@@ -120,12 +102,6 @@
         });
         tbody.append(tr);
       });
-    }
-
-    function rowClick(row) {
-      me.selectRow(row.id);
-      me.RowClickEvent.detail.value = row.id;
-      me.dispatchEvent(me.RowClickEvent);
     }
 
     function headClick(col) {
@@ -150,20 +126,20 @@
   }
 
   selectRow(id) {
-    const me = this;
-    if (me._theme) {
-      var rows = me.shadow.querySelectorAll('tbody tr');
-      rows.forEach(function (row) {
-        if (row.id == id) {
-          row.classList.add(me._theme);
-          row.scrollIntoView();
-        } else {
-          row.classList.remove(me._theme);
-				}
-      });
-		}
-    //me.RowClickEvent.detail.value = row.id;
-    //me.dispatchEvent(me.RowClickEvent);
+    var rows = this.tbody.querySelectorAll('tr');
+    rows.forEach(function (row) {
+      if (row.id == id) {
+        row.classList.add("theme");
+        if (row.hidden) row.scrollIntoView(false);
+      } else {
+        row.classList.remove("theme");
+      }
+    });
 	}
 }
-window.customElements.define("mp-table", mpTable);
+mpTable.prototype.onclick = function (event) {
+  event.stopImmediatePropagation();
+  var id = event.target.parentElement.id;
+  this.selectRow(id);
+  this.fireEvent("rowClick", id);
+};

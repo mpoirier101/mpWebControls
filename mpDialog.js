@@ -55,7 +55,7 @@ class mpDialog {
       // insert content element before currentContent in the DOM tree
       this._element.insertBefore(content, currentContent);
       // move currentContent into content
-      content.appendChild(el);
+      content.appendChild(currentContent);
     }
     this._element.appendChild(content);
 
@@ -79,6 +79,7 @@ class mpDialog {
             break;
         }
         var btn = document.createElement("button");
+        btn.type = "button";
         btn.innerText = btnName;
         btn.value = button;
         footer.append(btn);

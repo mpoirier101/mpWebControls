@@ -1,59 +1,18 @@
-:root {
-	--primary-color: #2196f3;
-	--secondary-color: #91abbe;
-	--dark-color: #333;
-	--light-color: #fff;
-	--success-color: #5cb85c;
-	--error-color: #d9534f;
-}
-
-* {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
-}
-
-body {
-	font-family: "Segoe UI",Arial,sans-serif;
-	font-size: 14px;
-	line-height: 1.5;
-	width: 100%;
-	height: 100vh;
-}
-
-.theme {
-  background-color: var(--primary-color);
-  color: var(--light-color);
-}
-
-.theme2 {
-  background-color: var(--secondary-color);
-  color: var(--light-color);
-}
-
-.show {display: block;}
-.hide {display: none;}
-
-:focus {
-  outline: none;
-  outline-offset: 0;
-}
-
-.form-inline {  
-  display: flex;
-	flex-direction: row;
-  flex-flow: row wrap;
-  align-items: center;
-}
 
 .mpControl {
   padding: 5px;
+  min-width: 200px;
+  overflow-y: visible;
+}
+.mpControl:hover .mpSelect-content{
+  display:block
 }
 
 .mpControl-label {
   display: inline-block;
   width: auto;
-  margin-right: 0.5em;
+  margin: 0 0.5em;
+  white-space: nowrap;
 }
 
 .mpControl-wrapper {
@@ -61,14 +20,10 @@ body {
   width: 200px;
 }
 
-.mpControl input {
-  width: 100%;
+.mpControl input:focus {
+  outline: none;
+  outline-offset: 0;
 }
-.mpControl input[type="checkbox"] {
-  width: auto;
-  margin: 0 5px;
-}
-
 .mpControl input[type=text], input[type=date], input[type=tel], input[type=number], input[type=email] {
   display: inline-block;
   cursor: auto;
@@ -77,15 +32,27 @@ body {
   padding: 1px 2px;
   background-color: var(--light-color);
   color: var(--dark-color);
-	border: 1px solid var(--secondary-color);
+  border: solid 1px var(--medium-color);
   border-image: none;
   height: 20px;
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.mpControl:hover .mpSelect-content{
-  display:block
+.mpRadio-content {
+  display: block;
+  position: absolute;
+  cursor:auto;
+  background-color: var(--light-color);
+  color: var(--dark-color);
+	border: solid 1px var(--medium-color);
+  min-width: 160px;
+  max-height: 400px;
+  overflow-y: auto;
+  white-space: nowrap;
+  z-index: auto;
+  padding: 4px;
 }
 
 .mpSelect-content {
@@ -94,13 +61,13 @@ body {
   cursor:auto;
   background-color: var(--light-color);
   color: var(--dark-color);
-	border: 1px solid var(--secondary-color);
+	border: solid 1px var(--medium-color);
   min-width: 160px;
   max-height: 400px;
   overflow-y: auto;
   white-space: nowrap;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  box-shadow: var(--shadow);
+  z-index: 99;
   padding: 4px;
 }
 .mpSelect-content option {
@@ -120,21 +87,6 @@ body {
   border: 0;
   width: 100%;
 }
-/* .mpSelect-content input {
-  width: auto;
-  margin: 2px;
-  position: relative;
-  top: 2px;
-  cursor: pointer;
-  -webkit-appearance: checkbox;
-  box-sizing: border-box;
-} */
-
-
-.mpSelect-content label {
-  cursor: pointer;
-}
-
 
 .mpDialog {
 	position: absolute;
@@ -142,8 +94,8 @@ body {
   flex-direction: column;
   justify-content: space-between;
   background-color: var(--light-color);
-  border: solid 1px var(--secondary-color);
-  box-shadow: 0 4px 22px 0 rgba(black, 0.05);
+  border: solid 1px var(--medium-color);
+  box-shadow: var(--shadow);
 	min-width: 200px;
 	min-height: 200px;
 	max-height: 500px;
@@ -183,60 +135,43 @@ body {
   cursor: pointer;
 }
 
-
-
-.tableWrap {
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0;
-  overflow: auto;
+.mpTable {
+  padding: 1px;
+  margin: 0 auto;
+  overflow-y: scroll;
+  border: solid 1px var(--medium-color);
 }
-table {
+.mpTable table {
   width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
 }
-thead tr th {
-  position: sticky;
-  top: 0;
-}
-th {
-  padding: 6px;
-  text-align: left;
-  /* With border-collapse, we must use box-shadow for the header borders */
-  box-shadow: 0px 0px 0 1px;
-}
-tbody tr {
+.mpTable tbody tr {
   border-bottom: 1px solid gray;
 }
-tbody tr:hover {
-  background: #e6f7ff;
+.mpTable tbody tr:nth-child(even) {
+  background-color: var(--light-color);
+}
+.mpTable tr:hover {
+	background-color: var(--secondary-color);
+	color: var(--light-color);
+}
+.mpTable th {
+  position: sticky;
+  top: 0;
+  padding: 6px;
+  text-align: left;
+  box-shadow: 0px 0px 0 1px;
+}
+.mpTable td {
+  padding: 2px 6px;
+  text-align: left;
 }
 
-
-@media (max-width: 800px) {
-  .form-inline {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .mpControl {
-    width: 100%;
-  }
-  .mpControl-label {
-    display: block;
-    width: 100%;
-  }
-  .mpControl-wrapper {
-    display: block;
-    width: 100%;
-  }
-}
 
 .mpCal {
   background-color: var(--light-color);
-  border: solid 1px var(--secondary-color);
-  box-shadow: 0 4px 22px 0 rgba(black, 0.05);
-  margin: 0 auto;
+  border: solid 1px var(--medium-color);
   overflow: hidden;
   width: 400px;
 }
@@ -263,7 +198,6 @@ tbody tr:hover {
   display: flex;
   padding: 0.25rem 1.4rem;
 }
-
 .mpCal-header__label {
   font-weight: bold;
   text-align: center;
@@ -274,16 +208,14 @@ tbody tr:hover {
   display: flex;
   flex-wrap: wrap;
 }
-
-  .mpCal-week span {
-    flex-direction: column;
-    flex: 0 0 14.28%;
-    font-size: 0.8rem;
-    max-width: 14.28%;
-    padding: 0.3rem 1.4rem;
-    text-align: center;
-    /* text-transform: uppercase; */
-  }
+.mpCal-week span {
+  flex-direction: column;
+  flex: 0 0 14.28%;
+  font-size: 0.8rem;
+  max-width: 14.28%;
+  padding: 0.3rem 1.4rem;
+  text-align: center;
+}
 
 .mpCal-body {
   background-color: var(--light-color);
@@ -301,7 +233,6 @@ tbody tr:hover {
   padding: 0.3rem 0;
   cursor: pointer;
 }
-
 .mpCal-date:hover {
   outline: 2px solid var(--secondary-color);
 }
@@ -314,3 +245,18 @@ tbody tr:hover {
   cursor: not-allowed;
   opacity: 0.5;
 }
+
+@media (max-width: 800px) {
+  .mpControl {
+    width: 100%;
+  }
+  .mpControl-label {
+    display: block;
+    width: 100%;
+  }
+  .mpControl-wrapper {
+    display: block;
+    width: 100%;
+  }
+}
+

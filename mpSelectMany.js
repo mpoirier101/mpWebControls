@@ -66,7 +66,7 @@ class mpSelectMany {
 				var checkbox = document.createElement("input");
 				checkbox.type = "checkbox";
 				checkbox.id = ctrl.id + item[0];
-				checkbox.name = selector;
+				checkbox.name = name;
 				checkbox.value = item[0];
 				if (values && values.indexOf(item[0]) > -1) {
 					checkbox.checked = true;
@@ -74,6 +74,7 @@ class mpSelectMany {
 					descriptions.push(item[1]);
 				}
 				var label = document.createElement("label");
+        label.classList.add("mpControl-label");
 				label.htmlFor = ctrl.id + item[0];
 				label.innerText = item[1];
 				var div = document.createElement("div");

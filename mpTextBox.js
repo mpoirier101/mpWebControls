@@ -6,6 +6,7 @@
 
     this.options = options;
     var caption = options.caption || this._element.getAttribute("caption") || "";
+    var name = options.name || this._element.getAttribute("name") || selector;
     var placeholder = options.placeholder || this._element.getAttribute("placeholder") || "Enter text";
     var pattern = options.pattern || this._element.getAttribute("pattern") || "";
     var value = options.value || this._element.getAttribute("value") || "";
@@ -22,9 +23,6 @@
       this._element.dispatchEvent(new CustomEvent(event, { detail: obj }));
     };
 
-
-    
-
     // caption
     if (caption) {
       var lbl = this._element.appendChild(document.createElement("div"));
@@ -39,7 +37,7 @@
     this.ctrl = wrapper.appendChild(document.createElement("input"));
     this.ctrl.type = type;
     this.ctrl.id = selector + "input";
-    this.ctrl.name = selector;
+    this.ctrl.name = name;
     if (placeholder) {
       this.ctrl.placeholder = placeholder;
     }

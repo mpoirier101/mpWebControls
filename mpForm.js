@@ -507,7 +507,7 @@ var webForm = function () {
 		var data = {
 			latlng: pos,
 			//result_type: "postal_code|colloquial_area",
-			key: "AIzaSyCMM9iAmmMBt5vXpQHfy4qfu7kP7j3_UDo"
+			key: "[key]",
 		};
 
 		$.getJSON(uri, data, function (result) {
