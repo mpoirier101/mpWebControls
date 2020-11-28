@@ -20,6 +20,7 @@
     <h1>Test Controls</h1>
 
     <form>
+      
       <div class="navbar small theme">
         <div id="fullname"></div>
         <div id="sort"></div>
@@ -37,10 +38,12 @@
 
       <div class="section">
         <div class="centered">
-        <button type="submit" id="btnSubmit" class="btn theme">Submit</button>
-        <button type="button" id="btnDialog" class="btn theme">Show Dialog</button>
+          <button type="submit" id="btnSubmit" class="btn theme">Submit</button>
+          <button type="button" id="btnDialog" class="btn theme">Show Dialog</button>
+        </div>
       </div>
-  </form>  
+  
+    </form>  
 
 
   <div class="section">
@@ -210,6 +213,7 @@
           captions: ["Debut:","Fin:"],
           pattern: "\d{4}-\d{2}-\d{2}",
           required: true,
+          width: "600px",
         });
         period.on("input", function(e){
           console.log(e.detail);

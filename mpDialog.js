@@ -17,6 +17,11 @@ class mpDialog {
     var height = options.height || this._element.getAttribute("height") || "200px";
     var buttons = options.buttons || [];
 
+    if (width) this._element.style.width = width;
+    //if (width) this._element.style.maxWidth = width;
+    if (height) this._element.style.height = height;
+    //if (height) this._element.style.maxHeight = height;
+
     // events
     this.closeHandler = this.onclose.bind(this);
     this.on = function (event, func) {
@@ -26,10 +31,6 @@ class mpDialog {
       this._element.dispatchEvent(new CustomEvent(event, { detail: obj }));
     };
     
-    // dialog ctrl
-    if (width) { this._element.style.width = width; }
-    if (height) { this._element.style.height = height; }
-
     // dialog header
     var header = this._element.insertAdjacentElement("afterbegin", document.createElement("header"));
     header.classList.add("theme");

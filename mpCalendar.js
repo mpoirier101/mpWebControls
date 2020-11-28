@@ -13,6 +13,11 @@ class mpCalendar {
     var height = options.height || this._element.getAttribute("height") || "";
     this.disablePastDays = options.disablePastDays || this._element.getAttribute("disablePastDays") || "";
 
+    if (width) this._element.style.width = width;
+    //if (width) this._element.style.maxWidth = width;
+    if (height) this._element.style.height = height;
+    //if (height) this._element.style.maxHeight = height;
+
     // events
     this.clickHandler = this.onclick.bind(this);
     this.on = function (event, func) {
@@ -27,10 +32,6 @@ class mpCalendar {
     this.date = new Date(new Date().toDateString());
     this.date.setDate(1);
 
-    // calendar ctrl
-    if (width) { this._element.style.width = width; }
-    if (height) { this._element.style.height = height; }
-    
     // hidden input for form
     this.input = this._element.appendChild(document.createElement("input"));
     this.input.type = "hidden";

@@ -2,7 +2,7 @@
   constructor(selector, options) {
 
     this._element = document.getElementById(selector);
-    this._element.classList.add("mpControl");
+    this._element.classList.add("mpControl","double");
 
     this.options = options;
     var placeholders = options.placeholders || (this._element.getAttribute("placeholders") || "").split(',');
@@ -10,6 +10,13 @@
     var pattern = options.pattern || this._element.getAttribute("pattern") || "\d{4}-\d{2}-\d{2}";
     var values = options.values || (this._element.getAttribute("values") || "").split(',');
     var required = options.required || this._element.getAttribute("required") || "";
+    var width = options.width || this._element.getAttribute("width") || "";
+    var height = options.height || this._element.getAttribute("height") || "";
+
+    //if (width) this._element.style.width = width;
+    //if (width) this._element.style.maxWidth = width;
+    //if (height) this._element.style.height = height;
+    //if (height) this._element.style.maxHeight = height;
 
     // events
     this.inputHandler = this.oninput.bind(this);
@@ -23,7 +30,7 @@
 
     // control wrapper
     var wrapper = this._element.appendChild(document.createElement("div"));
-    wrapper.classList.add("mpControl-nowrap");
+    wrapper.classList.add("mpControl-nowrap","double");
     
     // start control
     if (captions[0]) {
@@ -32,7 +39,7 @@
       lbl.innerText = captions[0];
     }
     var wrapperStart = wrapper.appendChild(document.createElement("div"));
-    wrapperStart.classList.add("mpControl-wrapper");
+    wrapperStart.classList.add("mpControl-wrap");
     // input start control
     this.start = wrapperStart.appendChild(document.createElement("input"));
     this.start.type = "date";
@@ -43,14 +50,18 @@
     if (pattern) { this.start.pattern = pattern; }
     this.start.addEventListener('input', this.inputHandler, true);
 
+    // control wrapper
+    var wrapper2 = this._element.appendChild(document.createElement("div"));
+    wrapper2.classList.add("mpControl-nowrap","double");
+
     // end control
     if (captions[1]) {
-      var lbl = wrapper.appendChild(document.createElement("div"));
+      var lbl = wrapper2.appendChild(document.createElement("div"));
       lbl.classList.add("mpControl-label");
       lbl.innerText = captions[1];
     }
-    var wrapperEnd = wrapper.appendChild(document.createElement("div"));
-    wrapperEnd.classList.add("mpControl-wrapper");
+    var wrapperEnd = wrapper2.appendChild(document.createElement("div"));
+    wrapperEnd.classList.add("mpControl-wrap");
     // input end control
     this.end = wrapperEnd.appendChild(document.createElement("input"));
     this.end.type = "date";

@@ -140,10 +140,14 @@ p {
 
 .btn {
 	display: inline-block;
-	padding: 2px 8px;
+	padding: 8px;
 	cursor: pointer;
 	border: none;
 	border-radius: 2px;
+}
+.btn:focus {
+  outline: none;
+  outline-offset: 0;
 }
 
 .show {
@@ -171,7 +175,8 @@ p {
 }
 
 	.navbar.small {
-		justify-content: flex-start;
+    justify-content: flex-start;
+    column-gap: 0;
 		min-height: 40px;
 		padding: 0;
 	}

@@ -1,13 +1,19 @@
-
-.mpControl-nowrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: nowrap;
+:root {
+  --control-width: 270px;
 }
 
 .mpControl {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: nowrap;
   padding: 5px;
+  min-width: var(--control-width);
+}
+
+.mpControl.double {
+  padding: 0;
+  min-width: calc(var(--control-width) * 2);
 }
 
 .mpControl.small {
@@ -20,27 +26,34 @@
 
 .mpControl-label {
   display: inline-block;
-  width: auto;
+  width: 35%;
   margin: 0 0.5em;
   white-space: nowrap;
 }
 
-.mpControl-wrapper {
+.mpControl-wrap {
   display: inline-block;
-  width: 100%;
-  min-width: 100px;
-  max-width: 200px;
+  width: 65%;
 }
 
-.small .mpControl-wrapper {
-  min-width: 50px;
-  max-width: 100px;
+.mpControl-nowrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.mpControl-nowrap.double {
+  width: 50%;
+  padding: 5px;
 }
 
 .mpControl input:focus {
   outline: none;
   outline-offset: 0;
 }
+
 .mpControl input[type=text], input[type=date], input[type=tel], input[type=number], input[type=email] {
   display: inline-block;
   cursor: auto;
@@ -262,20 +275,22 @@
 }
 
 @media (max-width: 800px) {
+  .mpControl {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .mpControl-wrap {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+  }
   .mpControl-nowrap {
     flex-wrap: wrap;
-   }
-    .mpControl {
-    display: block;
     width: 100%;
   }
   .mpControl-label {
     display: block;
     width: 100%;
-  }
-  .mpControl-wrapper {
-    display: block;
-    width: 100%;
-    max-width: 100%;
   }
 }

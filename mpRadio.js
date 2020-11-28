@@ -11,7 +11,14 @@ class mpRadio {
     this.value = options.value || this._element.getAttribute("value") || "";
     this.required = options.required || this._element.getAttribute("required") || "";
     var list = options.list || this._element.getAttribute("list");
+    var width = options.width || this._element.getAttribute("width") || "";
+    var height = options.height || this._element.getAttribute("height") || "";
     
+    if (width) this._element.style.width = width;
+    //if (width) this._element.style.maxWidth = width;
+    if (height) this._element.style.height = height;
+    //if (height) this._element.style.maxHeight = height;
+
     // events
     this.clickHandler = this.onclick.bind(this);
     this.on = function (event, func) {

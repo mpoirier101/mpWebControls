@@ -14,6 +14,11 @@
     me._sortOrder = options.sortOrder || 1;
     me._sortProp = options.sortProp || "";
 
+    if (width) this._element.style.width = width;
+    if (width) this._element.style.maxWidth = width;
+    //if (height) this._element.style.height = height;
+    if (height) this._element.style.maxHeight = height;
+
     // events
     this.clickHandler = this.onclick.bind(this);
     this.on = function (event, func) {
@@ -22,11 +27,6 @@
     this.fireEvent = function (event, obj) {
       this._element.dispatchEvent(new CustomEvent(event, { detail: obj }));
     };
-
-    if (width) this._element.style.width = width;
-    if (width) this._element.style.maxWidth = width;
-    //if (height) this._element.style.height = height;
-    if (height) this._element.style.maxHeight = height;
 
     // table
     me.table = this._element.appendChild(document.createElement("table"));

@@ -11,7 +11,14 @@ class mpSelect {
     var value = options.value || this._element.getAttribute("value") || "";
     var required = options.required || this._element.getAttribute("required") || "";
     var list = options.list || (this._element.getAttribute("list") || "").split(',');
+    var width = options.width || this._element.getAttribute("width") || "";
+    var height = options.height || this._element.getAttribute("height") || "";
     
+    if (width) this._element.style.width = width;
+    if (width) this._element.style.maxWidth = width;
+    //if (height) this._element.style.height = height;
+    if (height) this._element.style.maxHeight = height;
+
     // events
     this.clickHandler = this.onclick.bind(this);
     this.on = function (event, func) {
@@ -34,7 +41,7 @@ class mpSelect {
     }
 
     var wrapper = this._element.appendChild(document.createElement("div"));
-    wrapper.classList.add("mpControl-wrapper");
+    wrapper.classList.add("mpControl-wrap");
 
     // input ctrl
     this.ctrl = wrapper.appendChild(document.createElement("input"));
