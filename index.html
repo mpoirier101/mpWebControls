@@ -3,10 +3,13 @@
   <head>
     <title>Controls</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/mpTheme.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="/css/mp.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="/css/mpControls.css" />
 
     <script src="mpTextBox.js"></script>
+    <script src="mpCheck.js"></script>
     <script src="mpRadio.js"></script>
     <script src="mpSelect.js"></script>
     <script src="mpSelectMany.js"></script>
@@ -25,6 +28,7 @@
         <div id="fullname"></div>
         <div id="sort"></div>
         <div id="district"></div>
+        <div id="persist"></div>
         <div id="date"></div>
         <div id="period"></div>
       </div>
@@ -52,7 +56,9 @@
     </div>
   </div>
 
-    <div id="dialog"></div>
+    <div id="dialog">
+      <h1>TEST</h1>
+    </div>
 
     <script>
       var orders = [
@@ -175,6 +181,19 @@
           required: true,
         });
         sort.on("changed", function(e){
+          console.log(e.detail);
+        });
+
+        // ---------------------------------
+        // mp-check
+        // ---------------------------------
+        var persist = new mpCheck("persist", {
+          caption: "Persist",
+          name: "persist",
+          //value: selectedOrder,
+          //required: true,
+        });
+        persist.on("changed", function(e){
           console.log(e.detail);
         });
 

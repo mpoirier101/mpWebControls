@@ -112,7 +112,7 @@
   color: var(--dark-color);
 	border: solid 1px var(--medium-color);
   min-width: 160px;
-  max-height: 200px;
+  max-height: 400px;
   overflow-y: auto;
   white-space: nowrap;
   z-index: auto;
@@ -184,17 +184,13 @@
   overflow: auto;
 }
 
-  .mpDialog footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 30px;
-    padding: 10px;
-  }
+.mpDialog footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 30px;
+  padding: 10px;
+}
 
 .mpDialog footer button {
   margin-left: 8px;

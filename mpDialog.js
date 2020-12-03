@@ -31,10 +31,20 @@ class mpDialog {
       this._element.dispatchEvent(new CustomEvent(event, { detail: obj }));
     };
     
+    // dialog content
+    var content = document.createElement("content");
+    var currentContent = this._element.children;
+    if (currentContent) {
+      // move currentContent into content
+      for (var i = 0; i < currentContent.length; i++) {
+        content.appendChild(currentContent[i]);
+      }
+    }
+    this._element.appendChild(content);
+
     // dialog header
     var header = this._element.insertAdjacentElement("afterbegin", document.createElement("header"));
     header.classList.add("theme");
-    
     if (caption) {
       var title = header.appendChild(document.createElement("h1"));
       title.innerText = caption;
@@ -44,28 +54,14 @@ class mpDialog {
     closeBtn.value = "0";
     closeBtn.style.cursor = "pointer";
     closeBtn.addEventListener('click', this.closeHandler, true);
-
     header.addEventListener("mousedown", function (e) {
       dragMouseDown(e);
     });
 
-    // dialog content
-    var content = document.createElement("content");
-    var currentContent = this._element.querySelector('div');
-    if (currentContent) {
-      // insert content element before currentContent in the DOM tree
-      this._element.insertBefore(content, currentContent);
-      // move currentContent into content
-      content.appendChild(currentContent);
-    }
-    this._element.appendChild(content);
-
     // dialog footer
     if (buttons && buttons.length > 0) {
-
       var footer = this._element.insertAdjacentElement("beforeend", document.createElement("footer"));
       footer.classList.add("theme");
-
       buttons.forEach(function (button, i) {
         var btnName = "";
         switch (button) {
@@ -85,7 +81,6 @@ class mpDialog {
         btn.value = button;
         footer.append(btn);
       });
-
       footer.addEventListener('click', this.closeHandler, true);
     }
 
@@ -112,7 +107,8 @@ class mpDialog {
       me._element.style.top = (me._element.offsetTop - pos2) + "px";
       me._element.style.left = (me._element.offsetLeft - pos1) + "px";
     }
-      function closeDragElement() {
+
+    function closeDragElement() {
       // stop moving when mouse button is released:
       document.onmouseup = null;
       document.onmousemove = null;
