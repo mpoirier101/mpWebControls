@@ -104,9 +104,15 @@
 }
 */
 
+.mpRadio-label {
+  display: inline-block;
+  width: 35%;
+  margin: 0 0.5em;
+  white-space: nowrap;
+}
+
 .mpRadio-content {
   display: block;
-  position: absolute;
   cursor:auto;
   background-color: var(--light-color);
   color: var(--dark-color);
@@ -312,13 +318,17 @@
   opacity: 0.5;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 500px) {
   .mpControl {
     justify-content: flex-start;
     flex-wrap: wrap;
     width: 100%;
   }
-  .mpControl-wrap {
+  .mpControl.double {
+    padding: 0;
+    min-width: var(--control-width);
+  }
+    .mpControl-wrap {
     display: block;
     width: 100%;
     max-width: 100%;
@@ -331,4 +341,104 @@
     display: block;
     width: 100%;
   }
+  .mpControl:hover .mpSelect-content{
+    display:none;
+  }
+  
+
+
+  .mpDialog {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--light-color);
+    border: solid 1px var(--medium-color);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 99;
+  }
+  
+  .mpDialog header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 30px;
+    padding: 10px;
+  }
+  .mpDialog header h1 {
+    margin: 0;
+  }
+  
+  .mpDialog content {
+    flex: 1 1 100%;
+    padding: 10px;
+    overflow: auto;
+  }
+  
+  .mpDialog footer {
+    position: static;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 30px;
+    padding: 10px;
+  }
+  
+  .mpDialog footer button {
+    margin-left: 8px;
+    padding: 4px 8px;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  
+  .mpSelect-content {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    border: solid 1px var(--medium-color);
+    overflow-y: auto;
+    white-space: nowrap;
+    box-shadow: var(--shadow);
+    padding: 4px;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 99;
+  }
+  .mpSelect-content option {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 2px;
+    border: 0;
+    width: 100%;
+  }
+  .mpSelect-content div {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: 100%;
+  }
+  
 }

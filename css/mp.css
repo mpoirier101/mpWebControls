@@ -181,11 +181,11 @@ tbody td {
 	flex-flow: row wrap;
 	justify-content: space-between;
 	align-items: center;
-	column-gap: 1em;
 	width: 100%;
 	min-height: 50px;
 	padding: 0 10px;
-	overflow: hidden;
+  overflow: hidden;
+  box-shadow: var(--shadow);
 }
 
 	.navbar.small {
@@ -208,7 +208,7 @@ tbody td {
 }
 
 	.navbar .logo {
-		width: 130px;
+		height: 32px;
 		flex: 0;
 	}
 
@@ -306,16 +306,11 @@ tbody td {
 
 /* Mobile */
 @media (max-width: 500px) {
-	.navbar {
-		height: 110px;
-	}
-
-		.navbar .flex {
-			flex-direction: column;
-		}
-
-		.navbar ul {
-			padding: 10px;
-			background-color: rgba(0, 0, 0, 0.1);
-		}
+  .navbar .flex {
+    flex-direction: column;
+  }
+  .navbar ul {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 }

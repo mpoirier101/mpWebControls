@@ -31,7 +31,7 @@ class mpRadio {
    // caption
     if (caption) {
       var lbl = this._element.appendChild(document.createElement("div"));
-      lbl.classList.add("mpControl-label");
+      lbl.classList.add("mpRadio-label");
       lbl.innerText = caption;
     }
 
@@ -71,7 +71,7 @@ class mpRadio {
           radio.required = true;
         }
         var lbl = document.createElement("label");
-        lbl.classList.add("mpControl-label");
+        lbl.classList.add("mpRadio-label");
         lbl.htmlFor = radio.id;
         lbl.innerText = item[1];
         var div = document.createElement("div");

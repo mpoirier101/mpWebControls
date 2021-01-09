@@ -1,4 +1,4 @@
-class mpSelect {
+class pwaSelect  {
   constructor(selector, options) {
 
     this._element = document.getElementById(selector);
@@ -28,12 +28,12 @@ class mpSelect {
       this._element.dispatchEvent(new CustomEvent(event, { detail: obj }));
     };
 
-  // hidden input for form
-  this.input = this._element.appendChild(document.createElement("input"));
-  this.input.type = "hidden";
-  this.input.name = name;
+    // hidden input for form
+    this.input = this._element.appendChild(document.createElement("input"));
+    this.input.type = "hidden";
+    this.input.name = name;
 
-   // caption
+    // caption
     if (caption) {
       var lbl = this._element.appendChild(document.createElement("div"));
       lbl.classList.add("mpControl-label");
@@ -47,11 +47,12 @@ class mpSelect {
     this.ctrl = wrapper.appendChild(document.createElement("input"));
     this.ctrl.type = "text";
     this.ctrl.id = selector + "input";
-    this.ctrl.autocomplete = false;
+    this.ctrl.setAttribute("autocomplete", "off");
     this.ctrl.onkeypress = function (event) {
       event.target.value = "";
       return false;
     }
+
     if (placeholder) {
       this.ctrl.placeholder = placeholder;
     }
@@ -80,11 +81,20 @@ class mpSelect {
         content.append(option);
       });
     }
+
+    function open() {
+      this.content.style.display = "flex";
+    }
+    //open = open.bind(this);
+    //this.ctrl.onclick = open;
+    this.ctrl.onclick = open.bind(this);
   }
+
 }
-mpSelect.prototype.onclick = function (event) {
+pwaSelect.prototype.onclick = function (event) {
   event.stopImmediatePropagation();
   if (event.target.text) {
+    this.content.style.display = "none";
     this.ctrl.value = event.target.text;
     this.ctrl.title = event.target.text;
     this.input.value = event.target.value;

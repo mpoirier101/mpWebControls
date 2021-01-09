@@ -47,7 +47,7 @@ class mpSelectMany {
 		this.ctrl = wrapper.appendChild(document.createElement("input"));
 		this.ctrl.type = "text";
 		this.ctrl.id = selector + "input";
-    this.ctrl.autocomplete = false;
+    this.ctrl.setAttribute("autocomplete", "off");
     this.ctrl.onkeypress = function (event) {
       event.target.value = "";
       return false;
