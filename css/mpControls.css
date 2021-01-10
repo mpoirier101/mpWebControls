@@ -1,444 +1,394 @@
 :root {
-  --control-width: 270px;
+	--control-width: 270px;
 }
 
 .mpControl {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-wrap: nowrap;
-  padding: 5px;
-  min-width: var(--control-width);
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex-wrap: nowrap;
+	padding: 5px;
+	min-width: var(--control-width);
 }
-
 .mpControl.double {
-  padding: 0;
-  min-width: calc(var(--control-width) * 2);
+	padding: 0;
+	min-width: calc(var(--control-width) * 2);
 }
-
 .mpControl.small {
-  padding: 5px 0;
+	padding: 5px 0;
 }
-
-.mpControl:hover .mpSelect-content{
-  display:block
-}
-
 .mpControl-label {
-  display: inline-block;
-  width: 35%;
-  margin: 0 0.5em;
-  white-space: nowrap;
+	display: inline-block;
+	width: 35%;
+	margin: 0 0.5em;
+	white-space: nowrap;
 }
-
 .mpControl-wrap {
-  display: inline-block;
-  width: 65%;
+	display: inline-block;
+	width: 65%;
 }
-
 .mpControl-nowrap {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-wrap: nowrap;
-  width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex-wrap: nowrap;
+	width: 100%;
 }
-
 .mpControl-nowrap.double {
-  width: 50%;
-  padding: 5px;
+	width: 50%;
+	padding: 5px;
 }
-
 .mpControl input:focus {
-  outline: none;
-  outline-offset: 0;
+	outline: none;
+	outline-offset: 0;
 }
-
 .mpControl input[type=text], input[type=password], input[type=date], input[type=tel], input[type=number], input[type=email] {
-  display: inline-block;
-  cursor: auto;
-  margin: 0;
-  font: inherit;
-  padding: 1px 2px;
-  background-color: var(--light-color);
-  color: var(--dark-color);
-  border: solid 1px var(--medium-color);
-  border-image: none;
-  height: 20px;
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
+	display: inline-block;
+	cursor: auto;
+	margin: 0;
+	font: inherit;
+	padding: 1px 2px;
+	background-color: var(--light-color);
+	color: var(--dark-color);
+	border: solid 1px var(--medium-color);
+	border-image: none;
+	height: 20px;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .mpCheck {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: nowrap;
-  padding: 5px;
-  min-width: calc(var(--control-width) / 2);
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: nowrap;
+	padding: 5px;
+	min-width: calc(var(--control-width) / 2);
 }
+
 
 .mpCheck input[type=checkbox] {
-  display: inline-block;
-  cursor: auto;
-  margin: 0;
-  font: inherit;
-  background-color: var(--light-color);
-  color: var(--dark-color);
-  border: solid 1px var(--medium-color);
-  border-image: none;
-  height: 20px;
-  width: 20%;
+	display: inline-block;
+	cursor: auto;
+	margin: 0;
+	font: inherit;
+	background-color: var(--light-color);
+	color: var(--dark-color);
+	border: solid 1px var(--medium-color);
+	border-image: none;
+	height: 20px;
+	width: 20%;
+}
+.mpCheck-label {
+	display: inline-block;
+	margin: 0 0.5em;
+	white-space: nowrap;
 }
 
-.mpCheck-label {
-  display: inline-block;
-  margin: 0 0.5em;
-  white-space: nowrap;
-}
-/*
-.mpCheck-wrap {
-  display: inline-block;
-  width: 100%;
-}
-*/
 
 .mpRadio-label {
-  display: inline-block;
-  width: 35%;
-  margin: 0 0.5em;
-  white-space: nowrap;
+	display: inline-block;
+	width: 35%;
+	margin: 0 0.5em;
+	white-space: nowrap;
+}
+.mpRadio-content {
+	display: block;
+	cursor:auto;
+	background-color: var(--light-color);
+	color: var(--dark-color);
+	border: solid 1px var(--medium-color);
+	min-width: 160px;
+	max-height: 200px;
+	overflow-y: auto;
+	white-space: nowrap;
+	z-index: auto;
+	padding: 4px;
 }
 
-.mpRadio-content {
-  display: block;
-  cursor:auto;
-  background-color: var(--light-color);
-  color: var(--dark-color);
-	border: solid 1px var(--medium-color);
-  min-width: 160px;
-  max-height: 200px;
-  overflow-y: auto;
-  white-space: nowrap;
-  z-index: auto;
-  padding: 4px;
-}
 
 .mpSelect-content {
-  display: none;
-  position: absolute;
-  cursor:auto;
-  background-color: var(--light-color);
-  color: var(--dark-color);
+	position: absolute;
+	display: none;
+	flex-direction: column;
+	justify-content:center;
+	align-items: center;
+
+	cursor:auto;
+	background-color: var(--light-color);
+	color: var(--dark-color);
 	border: solid 1px var(--medium-color);
-  min-width: 160px;
-  max-height: 400px;
-  overflow-y: auto;
-  white-space: nowrap;
-  box-shadow: var(--shadow);
-  z-index: 99;
-  padding: 4px;
+	min-width: 160px;
+	max-height: 400px;
+	overflow-y: auto;
+	white-space: nowrap;
+	box-shadow: var(--shadow);
+	z-index: 99;
+	padding: 4px;
+}
+.mpSelect-content-header {
+	display: none;
+	position:absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-color: var(--primary-color);
+	color: var(--light-color);
+	padding: 4px;
 }
 .mpSelect-content option {
-  cursor: pointer;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 2px;
-  border: 0;
-  width: 100%;
+	cursor: pointer;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 2px;
+	border: 0;
+	width: 100%;
 }
 .mpSelect-content div {
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  width: 100%;
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	width: 100%;
 }
 
 .mpDialog {
-  position: absolute;
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: var(--light-color);
-  border: solid 1px var(--medium-color);
-  box-shadow: var(--shadow);
-  min-width: 200px;
-  min-height: 200px;
-  max-height: 500px;
-  z-index: 99;
+	position: absolute;
+	display: none;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: var(--light-color);
+	border: solid 1px var(--medium-color);
+	box-shadow: var(--shadow);
+	min-width: 200px;
+	min-height: 200px;
+	max-height: 500px;
+	z-index: 99;
 }
-
 .mpDialog header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	min-height: 30px;
 	padding: 10px;
-  cursor: move;
+	cursor: move;
 }
 .mpDialog header h1 {
-  margin: 0;
+	margin: 0;
 }
-
 .mpDialog content {
-  flex: 1;
-  padding: 10px;
-  overflow: auto;
+	flex: 1;
+	padding: 10px;
+	overflow: auto;
 }
-
-  .mpDialog footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 30px;
-    padding: 10px;
-  }
-
+.mpDialog footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 30px;
+	padding: 10px;
+}
 .mpDialog footer button {
-  margin-left: 8px;
-  padding: 4px 8px;
-  display: inline-block;
-  cursor: pointer;
+	margin-left: 8px;
+	padding: 4px 8px;
+	display: inline-block;
+	cursor: pointer;
 }
+
 
 .mpTable {
-  padding: 1px;
-  overflow-y: scroll;
-  border: solid 1px var(--medium-color);
+	padding: 1px;
+	overflow-y: scroll;
+	border: solid 1px var(--medium-color);
 }
 .mpTable table {
-  width: 100%;
-  border-spacing: 0;
-  border-collapse: collapse;
+	width: 100%;
+	border-spacing: 0;
+	border-collapse: collapse;
 }
 .mpTable tbody tr {
-  border-bottom: 1px solid gray;
+	border-bottom: 1px solid gray;
 }
 .mpTable tbody tr:hover {
-  background-color: var(--secondary-color);
-  color: var(--light-color);
+	background-color: var(--secondary-color);
+	color: var(--light-color);
 }
-
 .mpTable th {
-  position: sticky;
-  top: 0;
-  padding: 6px;
-  text-align: left;
-  box-shadow: 0px 0px 0 1px;
+	position: sticky;
+	top: 0;
+	padding: 6px;
+	text-align: left;
+	box-shadow: 0px 0px 0 1px;
 }
 .mpTable td {
-  padding: 2px 6px;
-  text-align: left;
+	padding: 2px 6px;
+	text-align: left;
 }
 
 
 .mpCal {
-  padding: 1px;
-  background-color: var(--light-color);
-  border: solid 1px var(--medium-color);
-  overflow: hidden;
-  width: 400px;
+	padding: 1px;
+	background-color: var(--light-color);
+	border: solid 1px var(--medium-color);
+	overflow: hidden;
+	width: 400px;
 }
-
 .mpCal-btn {
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -webkit-appearance: button;
-  background: none;
-  border: 0;
-  color: inherit;
-  cursor: pointer;
-  font: inherit;
-  line-height: normal;
-  min-width: 27px;
-  outline: none;
-  overflow: visible;
-  padding: 0;
-  text-align: center;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-appearance: button;
+	background: none;
+	border: 0;
+	color: inherit;
+	cursor: pointer;
+	font: inherit;
+	line-height: normal;
+	min-width: 27px;
+	outline: none;
+	overflow: visible;
+	padding: 0;
+	text-align: center;
 }
-
 .mpCal-header {
-  align-items: center;
-  display: flex;
-  padding: 0.25rem 1.4rem;
+	align-items: center;
+	display: flex;
+	padding: 0.25rem 1.4rem;
 }
 .mpCal-header__label {
-  font-weight: bold;
-  text-align: center;
-  width: 100%;
+	font-weight: bold;
+	text-align: center;
+	width: 100%;
 }
-
 .mpCal-week {
-  display: flex;
-  flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 .mpCal-week span {
-  flex-direction: column;
-  flex: 0 0 14.28%;
-  font-size: 0.8rem;
-  max-width: 14.28%;
-  padding: 0.3rem 1.4rem;
-  text-align: center;
+	flex-direction: column;
+	flex: 0 0 14.28%;
+	font-size: 0.8rem;
+	max-width: 14.28%;
+	padding: 0.3rem 1.4rem;
+	text-align: center;
 }
-
 .mpCal-body {
-  background-color: var(--light-color);
-  display: flex;
-  flex-wrap: wrap;
-  padding: 5px 0;
+	background-color: var(--light-color);
+	display: flex;
+	flex-wrap: wrap;
+	padding: 5px 0;
 }
-
 .mpCal-date {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  flex: 0 0 14.28%;
-  max-width: 14.28%;
-  padding: 0.3rem 0;
-  cursor: pointer;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	flex: 0 0 14.28%;
+	max-width: 14.28%;
+	padding: 0.3rem 0;
+	cursor: pointer;
 }
 .mpCal-date:hover {
-  outline: 2px solid var(--secondary-color);
+	outline: 2px solid var(--secondary-color);
 }
-
 .mpCal-selected {
-  outline: 2px solid var(--secondary-color);
+	outline: 2px solid var(--secondary-color);
 }
 .mpCal-disabled {
-  border-radius: 0;
-  cursor: not-allowed;
-  opacity: 0.5;
+	border-radius: 0;
+	cursor: not-allowed;
+	opacity: 0.5;
 }
 
-@media (max-width: 500px) {
-  .mpControl {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    width: 100%;
-  }
-  .mpControl.double {
-    padding: 0;
-    min-width: var(--control-width);
-  }
-    .mpControl-wrap {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-  }
-  .mpControl-nowrap {
-    flex-wrap: wrap;
-    width: 100%;
-  }
-  .mpControl-label {
-    display: block;
-    width: 100%;
-  }
-  .mpControl:hover .mpSelect-content{
-    display:none;
-  }
-  
+/* mobile phone */
+@media all and (max-width: 768px) {
 
+	.mpControl {
+		justify-content: flex-start;
+		flex-wrap: wrap;
+		width: 100%;
+	}
+	.mpControl.double {
+		padding: 0;
+		min-width: var(--control-width);
+	}
+	.mpControl-wrap {
+		display: block;
+		width: 100%;
+		max-width: 100%;
+	}
+	.mpControl-nowrap {
+		flex-wrap: wrap;
+		width: 100%;
+	}
+	.mpControl-label {
+		display: block;
+		width: 100%;
+	}
 
-  .mpDialog {
-    position: absolute;
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: var(--light-color);
-    border: solid 1px var(--medium-color);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    max-width: 100%;
-    max-height: 100%;
-    z-index: 99;
-  }
-  
-  .mpDialog header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 30px;
-    padding: 10px;
-  }
-  .mpDialog header h1 {
-    margin: 0;
-  }
-  
-  .mpDialog content {
-    flex: 1 1 100%;
-    padding: 10px;
-    overflow: auto;
-  }
-  
-  .mpDialog footer {
-    position: static;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 30px;
-    padding: 10px;
-  }
-  
-  .mpDialog footer button {
-    margin-left: 8px;
-    padding: 4px 8px;
-    display: inline-block;
-    cursor: pointer;
-  }
-
-  
-  .mpSelect-content {
-    position: absolute;
-    display: none;
-    flex-direction: column;
-    justify-content:center;
-    align-items: center;
-
-    background-color: var(--light-color);
-    color: var(--dark-color);
-    border: solid 1px var(--medium-color);
-    overflow-y: auto;
-    white-space: nowrap;
-    box-shadow: var(--shadow);
-    padding: 4px;
-
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    max-width: 100%;
-    max-height: 100%;
-    z-index: 99;
-  }
-  .mpSelect-content option {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 2px;
-    border: 0;
-    width: 100%;
-  }
-  .mpSelect-content div {
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    width: 100%;
-  }
-  
+	.mpDialog {
+		position: absolute;
+		display: none;
+		flex-direction: column;
+		justify-content: space-between;
+		background-color: var(--light-color);
+		border: solid 1px var(--medium-color);
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		min-width: 100%;
+		min-height: 100%;
+		max-width: 100%;
+		max-height: 100%;
+		z-index: 99;
+	}
+	.mpDialog header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		min-height: 30px;
+		padding: 10px;
+	}
+	.mpDialog header h1 {
+		margin: 0;
+	}
+	.mpDialog content {
+		flex: 1 1 100%;
+		padding: 10px;
+		overflow: auto;
+	}
+	.mpDialog footer {
+		position: static;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 30px;
+		padding: 10px;
+	}
+	.mpDialog footer button {
+		margin-left: 8px;
+		padding: 4px 8px;
+		display: inline-block;
+		cursor: pointer;
+	}
+	
+	.mpSelect-content {
+		top: 10%;
+		left: 10%;
+		right: 10%;
+		bottom: 10%;
+		min-width: 80%;
+		min-height: 80%;
+		max-width: 80%;
+		max-height: 80%;	
+	}
+	.mpSelect-content-header {
+		display: block;
+	}
 }
